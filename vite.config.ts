@@ -8,7 +8,8 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   plugins: [react()],
   server: {
-    open: '/'
+    open: '/',
+    port: 3001
   },
   resolve: {
     alias: {
