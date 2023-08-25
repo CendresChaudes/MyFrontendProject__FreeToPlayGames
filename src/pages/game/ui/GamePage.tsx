@@ -1,13 +1,13 @@
 import { Layout } from 'antd';
+import { Header } from '@/widgets/header';
+import styles from './styles.module.css';
 
-const { Header, Content } = Layout;
+const { Content } = Layout;
 
 export function GamePage() {
   return (
-    <Layout>
-      <Header>
-        Header
-      </Header>
+    <Layout className={styles.layout}>
+      <Header />
 
       <Content>
         Content

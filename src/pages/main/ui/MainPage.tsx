@@ -1,14 +1,13 @@
 import { Layout } from 'antd';
+import { Header } from '@/widgets/header';
 import styles from './styles.module.css';
 
-const { Header, Content, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 export function MainPage() {
   return (
     <Layout className={styles.layout}>
-      <Header className={styles.header}>
-        Header
-      </Header>
+      <Header hasReturnButton={false} />
 
       <Layout className={styles.layout}>
         <Sider className={styles.sider}>
