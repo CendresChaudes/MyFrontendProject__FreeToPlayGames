@@ -1,14 +1,15 @@
+import clsx from 'clsx';
+
 type LogoProps = {
   className: string;
+  path?: string;
 }
 
-export function Logo({ className }: LogoProps) {
+export function Logo({ className, path }: LogoProps) {
   return (
     <img
-      className={className}
-      src="img/logo.svg"
-      width={200}
-      height={50}
+      className={clsx('logo', className)}
+      src={path || 'img/logo.svg'}
       alt="Logo."
     />
   );

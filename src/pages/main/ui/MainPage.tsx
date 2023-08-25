@@ -1,4 +1,5 @@
 import { Layout } from 'antd';
+import { Footer } from '@/widgets/footer';
 import { Header } from '@/widgets/header';
 import styles from './styles.module.css';
 
@@ -18,6 +19,8 @@ export function MainPage() {
           Content
         </Content>
       </Layout>
+
+      <Footer />
     </Layout>
   );
 }

@@ -1,0 +1,12 @@
+.footer {
+  background-color: transparent;
+}
+
+.divider {
+  margin: 24px 0 5px 0;
+}
+
+.text {
+  margin: 0 !important;
+  text-align: center;
+}

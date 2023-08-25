@@ -11,6 +11,10 @@
   background-color: transparent;
 }
 
+.divider {
+  margin: 5px 0 24px 0;
+}
+
 .row {
   width: 100%;
 }
@@ -18,14 +22,4 @@
 .logo {
   display: block;
   margin: 0 auto;
-}
-
-.text {
-  margin: 0 !important;
-
-  text-align: end;
-}
-
-.divider {
-  margin: 5px 0 24px 0;
 }
