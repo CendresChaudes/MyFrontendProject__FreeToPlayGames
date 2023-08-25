@@ -1,5 +1,6 @@
 export enum AppRoute {
   Root = '/',
+  Game = '/game/:id',
   NotFound = '*'
 }
 
