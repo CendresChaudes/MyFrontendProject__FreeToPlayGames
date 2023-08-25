@@ -4,4 +4,7 @@ export enum AppRoute {
 }
 
 export enum APIRoute {
+  Games = '/games',
+  Game = '/game',
+  Filter = '/filter'
 }
