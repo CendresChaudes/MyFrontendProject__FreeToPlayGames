@@ -6,5 +6,9 @@ const getGamesStatus = (state: State) => state.game.gamesStatus;
 export const getCurrentGame = (state: State) => state.game.currentGame;
 const getCurrentGameStatus = (state: State) => state.game.currentGameStatus;
 
+export const getCurrentPlatformFilter = (state: State) => state.game.currentPlatformFilter;
+export const getCurrentGenreFilter = (state: State) => state.game.currentGenreFilter;
+export const getCurrentSortType = (state: State) => state.game.currentSortType;
+
 export const getGamesStatusObj = createStatusObj(getGamesStatus);
 export const getCurrentGameStatusObj = createStatusObj(getCurrentGameStatus);

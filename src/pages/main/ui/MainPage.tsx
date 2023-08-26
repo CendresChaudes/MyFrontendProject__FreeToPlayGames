@@ -1,12 +1,13 @@
-import { Layout } from 'antd';
+import { Col, Layout, Row } from 'antd';
 import { useEffect } from 'react';
 import { Footer } from '@/widgets/footer';
 import { Header } from '@/widgets/header';
+import { SortFilterPanel } from '@/features/sortFilterPanel';
 import { fetchGames } from '@/entities/game';
 import { useAppDispatch } from '@/shared/lib';
 import styles from './styles.module.css';
 
-const { Content, Sider } = Layout;
+const { Content } = Layout;
 
 export function MainPage() {
   const dispatch = useAppDispatch();
@@ -19,15 +20,14 @@ export function MainPage() {
     <Layout className={styles.body}>
       <Header hasReturnButton={false} />
 
-      <Layout className={styles.main}>
-        <Sider className={styles.sider}>
-          Sider
-        </Sider>
-
-        <Content>
-          Content
-        </Content>
-      </Layout>
+      <Content>
+        <Row justify="center">
+          <Col span={22}>
+            <SortFilterPanel />
+            Content
+          </Col>
+        </Row>
+      </Content>
 
       <Footer />
     </Layout>

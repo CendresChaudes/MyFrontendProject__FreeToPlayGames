@@ -1,26 +1,52 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { APIStatus } from '@/shared/api';
 import { fetchCurrentGame } from '../api/fetchCurrentGame';
 import { fetchGames } from '../api/fetchGames';
+import { Platform, Genre, SortType } from '../const';
 
 type initialStateType = {
   games: GamesAdaptedType[];
   gamesStatus: APIStatus;
   currentGame: Nullable<GameAdaptedType>;
   currentGameStatus: APIStatus;
-}
+  currentPlatformFilter: Platform;
+  currentGenreFilter: Genre;
+  currentSortType: SortType;
+};
 
 const initialState: initialStateType = {
   games: [],
   gamesStatus: APIStatus.Idle,
   currentGame: null,
   currentGameStatus: APIStatus.Idle,
+  currentPlatformFilter: Platform.All,
+  currentGenreFilter: Genre.All,
+  currentSortType: SortType.Relevance,
 };
 
 export const gameSlice = createSlice({
   name: 'game',
   initialState,
-  reducers: {},
+  reducers: {
+    changeCurrentPlatformFilter(
+      state,
+      action: PayloadAction<Platform>
+    ) {
+      state.currentPlatformFilter = action.payload;
+    },
+    changeCurrentGenreFilter(
+      state,
+      action: PayloadAction<Genre>
+    ) {
+      state.currentGenreFilter = action.payload;
+    },
+    changeCurrentSortType(
+      state,
+      action: PayloadAction<SortType>
+    ) {
+      state.currentSortType = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchGames.pending, (state) => {
@@ -44,5 +70,11 @@ export const gameSlice = createSlice({
         state.currentGameStatus = APIStatus.Rejected;
         state.currentGame = null;
       });
-  }
+  },
 });
+
+export const {
+  changeCurrentPlatformFilter,
+  changeCurrentGenreFilter,
+  changeCurrentSortType,
+} = gameSlice.actions;

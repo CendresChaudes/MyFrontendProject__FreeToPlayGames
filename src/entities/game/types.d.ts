@@ -57,7 +57,7 @@ type GamesAdaptedType = Omit<
 >;
 
 type Params = {
-  category?: typeof import('./const').tags[number];
-  platform?: 'pc' | 'browser' | 'all';
-  'sort-by'?: 'release-date' | 'popularity' | 'alphabetical' | 'relevance';
+  platform?: typeof import('./const').platforms[number];
+  category?: typeof import('./const').genres[number];
+  'sort-by'?: typeof import('./const').sortTypes[number];
 }
