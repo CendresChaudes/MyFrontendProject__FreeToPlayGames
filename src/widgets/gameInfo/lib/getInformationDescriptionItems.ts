@@ -4,21 +4,21 @@ export const getInformationDescriptionItems = (currentGame: GameAdaptedType): De
   {
     key: '1',
     label: 'Genre',
-    children: currentGame.genre,
+    children: currentGame.genre ?? 'N/A',
   },
   {
     key: '2',
     label: 'Developer',
-    children: currentGame.developer,
+    children: currentGame.developer ?? 'N/A',
   },
   {
     key: '3',
     label: 'Publisher',
-    children: currentGame.publisher,
+    children: currentGame.publisher ?? 'N/A',
   },
   {
     key: '4',
     label: 'Release Date',
-    children: currentGame.releaseDate,
+    children: currentGame.releaseDate ?? 'N/A',
   },
 ]);

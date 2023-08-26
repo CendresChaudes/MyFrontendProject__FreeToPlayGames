@@ -4,26 +4,26 @@ export const getSystemReqDescriptionItems = (currentGame: GameAdaptedType): Desc
   {
     key: '1',
     label: 'OS',
-    children: currentGame.minimumSystemRequirements.os,
+    children: currentGame.minimumSystemRequirements.os ?? 'N/A',
   },
   {
     key: '2',
     label: 'Processor',
-    children: currentGame.minimumSystemRequirements.processor,
+    children: currentGame.minimumSystemRequirements.processor ?? 'N/A',
   },
   {
     key: '3',
     label: 'Memory',
-    children: currentGame.minimumSystemRequirements.memory,
+    children: currentGame.minimumSystemRequirements.memory ?? 'N/A',
   },
   {
     key: '4',
     label: 'Graphics',
-    children: currentGame.minimumSystemRequirements.graphics,
+    children: currentGame.minimumSystemRequirements.graphics ?? 'N/A',
   },
   {
     key: '5',
     label: 'Storage',
-    children: currentGame.minimumSystemRequirements.storage,
+    children: currentGame.minimumSystemRequirements.storage ?? 'N/A',
   },
 ]);
