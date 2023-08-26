@@ -1,5 +1,6 @@
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Layout, Button, Row, Col } from 'antd';
+import { Link } from 'react-router-dom';
 import { redirectToRoute, useAppDispatch, useBreakpoint } from '@/shared/lib';
 import { Logo } from '@/shared/ui';
 import styles from './styles.module.css';
@@ -35,7 +36,9 @@ export function Header({ hasReturnButton = true }: HeaderProps) {
         </Col>
 
         <Col xs={{ span: hasReturnButton ? 20 : 24 }} sm={{ span: 8 }}>
-          <Logo className={styles.logo} />
+          <Link className={styles.link} to={AppRoute.Root}>
+            <Logo className={styles.logo} />
+          </Link>
         </Col>
       </Row>
     </_Header>

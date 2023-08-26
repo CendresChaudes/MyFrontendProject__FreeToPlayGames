@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import styles from './styles.module.css';
 
 type LogoProps = {
   className: string;
@@ -8,7 +9,7 @@ type LogoProps = {
 export function Logo({ className, path }: LogoProps) {
   return (
     <img
-      className={clsx('logo', className)}
+      className={clsx(styles.logo, className)}
       src={path || 'img/logo.svg'}
       alt="Logo."
     />
