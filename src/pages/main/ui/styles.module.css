@@ -1,6 +1,16 @@
-.layout {
+.body {
+  position: relative !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 100vh !important;
+
   background-color: transparent;
-  height: 100vh;
+}
+
+.main {
+  background-color: transparent;
+  flex-grow: 1 !important;
 }
 
 .sider {

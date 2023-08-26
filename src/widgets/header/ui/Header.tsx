@@ -1,5 +1,5 @@
 import { ArrowLeftOutlined } from '@ant-design/icons';
-import { Layout, Button, Divider, Row, Col } from 'antd';
+import { Layout, Button, Row, Col } from 'antd';
 import { redirectToRoute, useAppDispatch, useBreakpoint } from '@/shared/lib';
 import { Logo } from '@/shared/ui';
 import styles from './styles.module.css';
@@ -16,32 +16,28 @@ export function Header({ hasReturnButton = true }: HeaderProps) {
   const currentBreakpoint = useBreakpoint();
 
   return (
-    <>
-      <_Header className={styles.header}>
-        <Row className={styles.row} align="middle">
-          <Col xs={{ span: hasReturnButton ? 4 : 0 }} sm={{ span: 8 }}>
-            {hasReturnButton && (
-              <Button
-                type="primary"
-                shape="round"
-                icon={<ArrowLeftOutlined />}
-                aria-label="Return"
-                onClick={() => {
-                  dispatch(redirectToRoute(AppRoute.Root));
-                }}
-              >
-                {currentBreakpoint !== 'xs' && 'Return'}
-              </Button>
-            )}
-          </Col>
+    <_Header className={styles.header}>
+      <Row className={styles.row} align="middle">
+        <Col xs={{ span: hasReturnButton ? 4 : 0 }} sm={{ span: 8 }}>
+          {hasReturnButton && (
+            <Button
+              type="primary"
+              shape="round"
+              icon={<ArrowLeftOutlined />}
+              aria-label="Return"
+              onClick={() => {
+                dispatch(redirectToRoute(AppRoute.Root));
+              }}
+            >
+              {currentBreakpoint !== 'xs' && 'Return'}
+            </Button>
+          )}
+        </Col>
 
-          <Col xs={{ span: hasReturnButton ? 20 : 24 }} sm={{ span: 8 }}>
-            <Logo className={styles.logo} />
-          </Col>
-        </Row>
-      </_Header>
-
-      <Divider className={styles.divider} />
-    </>
+        <Col xs={{ span: hasReturnButton ? 20 : 24 }} sm={{ span: 8 }}>
+          <Logo className={styles.logo} />
+        </Col>
+      </Row>
+    </_Header>
   );
 }

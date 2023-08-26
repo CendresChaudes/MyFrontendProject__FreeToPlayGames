@@ -59,6 +59,5 @@ type GamesAdaptedType = Omit<
 type Params = {
   category?: typeof import('./const').tags[number];
   platform?: 'pc' | 'browser' | 'all';
-  tags?: string;
   'sort-by'?: 'release-date' | 'popularity' | 'alphabetical' | 'relevance';
 }

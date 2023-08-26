@@ -42,6 +42,7 @@ export const gameSlice = createSlice({
       })
       .addCase(fetchCurrentGame.rejected, (state) => {
         state.currentGameStatus = APIStatus.Rejected;
+        state.currentGame = null;
       });
   }
 });

@@ -4,15 +4,13 @@
   z-index: 1;
 
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   width: 100%;
   min-height: 70px;
 
-  background-color: transparent;
-}
-
-.divider {
-  margin: 5px 0 24px 0;
+  background-color: #ffffff;
+  border-bottom: 1px solid #dddddd;
 }
 
 .row {
@@ -22,4 +20,20 @@
 .logo {
   display: block;
   margin: 0 auto;
+
+  object-fit: contain;
+}
+
+@media (max-width: 576px) {
+  .logo {
+    width: 160px;
+    height: 40px;
+  }
+}
+
+@media (min-width: 576px) {
+  .logo {
+    width: 200px;
+    height: 50px;
+  }
 }
