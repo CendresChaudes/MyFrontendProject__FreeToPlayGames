@@ -38,7 +38,7 @@ export function GameInfo() {
           width={'100%'}
         />
 
-        <Carousel>
+        <Carousel className={styles.carousel}>
           {currentGame.screenshots.map((screenshot) => (
             <div key={screenshot.id}>
               <Image
