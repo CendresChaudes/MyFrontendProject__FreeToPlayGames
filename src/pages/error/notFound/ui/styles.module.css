@@ -1,0 +1,11 @@
+.result {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  height: 100vh;
+}
+
+.result > div {
+  margin: 0 auto !important;
+}
