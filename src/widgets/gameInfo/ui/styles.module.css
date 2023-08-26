@@ -3,12 +3,30 @@
 }
 
 .thumbnail {
+  width: 100% !important;
   margin: 0 0 15px 0;
 }
 
 .screenshot {
-  width: 100%;
-  height: 200px;
+  width: 100% !important;
+}
+
+@media (max-width: 576px) {
+  .screenshot {
+    height: 250px !important;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 1200px) {
+  .screenshot {
+    height: 350px !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .screenshot {
+    height: 400px !important;
+  }
 }
 
 .name {
@@ -46,5 +64,21 @@
 @media (min-width: 576px) {
   .section-title {
     font-size: 26px !important;
+  }
+}
+
+.descriptions td {
+  padding-bottom: 10px !important;
+}
+
+@media (max-width: 576px) {
+  .descriptions span {
+    font-size: 15px !important;
+  }
+}
+
+@media (min-width: 576px) {
+  .descriptions span {
+    font-size: 17px !important;
   }
 }

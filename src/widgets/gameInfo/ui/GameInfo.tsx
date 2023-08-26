@@ -15,7 +15,7 @@ export function GameInfo() {
   const currentGameStatus = useAppSelector(getCurrentGameStatusObj);
 
   if (currentGameStatus.isUncompleted) {
-    return <Loader text='Loading game info...' />;
+    return <Loader text="Loading game info..." />;
   }
 
   if (!currentGame) {
@@ -27,23 +27,57 @@ export function GameInfo() {
 
   return (
     <Row className={styles.wrapper} justify="space-evenly">
-      <Col xs={{ span: 22 }} sm={{ span: 21 }} lg={{ span: 9 }}>
-        <Image className={styles.thumbnail} src={currentGame.thumbnail} width={'100%'} />
+      <Col
+        xs={{ span: 22 }}
+        sm={{ span: 21 }}
+        lg={{ span: 10 }}
+      >
+        <Image
+          className={styles.thumbnail}
+          src={currentGame.thumbnail}
+          width={'100%'}
+        />
 
-        <Carousel style={{ alignSelf: 'center' }}>
+        <Carousel>
           {currentGame.screenshots.map((screenshot) => (
             <div key={screenshot.id}>
-              <Image className={styles.screenshot} src={screenshot.image} />
+              <Image
+                className={styles.screenshot}
+                src={screenshot.image}
+                width={'100%'}
+              />
             </div>
           ))}
         </Carousel>
       </Col>
-      <Col xs={{ span: 22 }} sm={{ span: 21 }} lg={{ span: 9 }}>
-        <Title className={styles.name} level={1} mark>{currentGame.title}</Title>
-        <Title className={styles['section-title']} level={2}>Information</Title>
-        <Descriptions items={informationDescriptionItems} column={1} />
-        <Title className={styles['section-title']} level={2}>Minimum System Requirements</Title>
-        <Descriptions items={systemReqDescriptionItems} column={1} />
+      <Col
+        xs={{ span: 22 }}
+        sm={{ span: 21 }}
+        lg={{ span: 9 }}
+      >
+        <Title
+          className={styles.name}
+          level={1}
+          mark
+        >
+          {currentGame.title}
+        </Title>
+        <Title className={styles['section-title']} level={2}>
+          Information
+        </Title>
+        <Descriptions
+          className={styles.descriptions}
+          items={informationDescriptionItems}
+          column={1}
+        />
+        <Title className={styles['section-title']} level={2}>
+          Minimum System Requirements
+        </Title>
+        <Descriptions
+          className={styles.descriptions}
+          items={systemReqDescriptionItems}
+          column={1}
+        />
       </Col>
     </Row>
   );
