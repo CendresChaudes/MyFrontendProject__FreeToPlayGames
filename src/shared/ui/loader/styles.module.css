@@ -33,8 +33,11 @@
 }
 
 .loader:after {
-  box-shadow: 0 2px 0 #ff3d00 inset;
   animation: rotate 2s linear infinite;
+}
+
+.loader--blue:after {
+  box-shadow: 0 2px 0 #1677ff inset;
 }
 
 @keyframes rotate {

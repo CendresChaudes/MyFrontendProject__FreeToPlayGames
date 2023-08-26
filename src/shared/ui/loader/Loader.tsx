@@ -3,13 +3,25 @@ import styles from './styles.module.css';
 
 type LoaderProps = {
   text?: string;
+  color?: 'blue';
   fullPage?: boolean;
 }
 
-export function Loader({ text = 'Loading...', fullPage = true }: LoaderProps) {
+export function Loader({ text = 'Loading...', color = 'blue', fullPage = true }: LoaderProps) {
   return (
-    <div className={clsx(styles.wrapper, { [styles['full-page']]: fullPage })}>
-      <div className={styles.loader}></div>
+    <div className={clsx(
+      styles.wrapper,
+      {
+        [styles['full-page']]: fullPage
+      })}
+    >
+      <div className={clsx(
+        styles.loader,
+        {
+          [styles[`loader--${color}`]]: color
+        })}
+      >
+      </div>
 
       {text && (
         <p className={styles.description}>{text}</p>
