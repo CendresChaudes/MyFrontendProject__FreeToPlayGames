@@ -28,8 +28,7 @@ export function GameInfo() {
   return (
     <Row className={styles.wrapper} justify="space-evenly">
       <Col
-        xs={{ span: 22 }}
-        sm={{ span: 21 }}
+        xs={{ span: 24 }}
         lg={{ span: 10 }}
       >
         <Image
@@ -51,8 +50,7 @@ export function GameInfo() {
         </Carousel>
       </Col>
       <Col
-        xs={{ span: 22 }}
-        sm={{ span: 21 }}
+        xs={{ span: 24 }}
         lg={{ span: 9 }}
       >
         <Title

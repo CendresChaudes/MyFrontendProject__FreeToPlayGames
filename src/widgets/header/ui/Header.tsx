@@ -24,6 +24,7 @@ export function Header({ hasReturnButton = true }: HeaderProps) {
             <Button
               type="primary"
               shape="round"
+              size={(currentBreakpoint !== 'xs' && currentBreakpoint !== 'sm') ? 'large' : 'middle'}
               icon={<ArrowLeftOutlined />}
               aria-label="Return"
               onClick={() => {
