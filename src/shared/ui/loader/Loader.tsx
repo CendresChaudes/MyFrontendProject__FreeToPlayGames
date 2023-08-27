@@ -9,18 +9,8 @@ type LoaderProps = {
 
 export function Loader({ text = 'Loading...', color = 'blue', fullPage = true }: LoaderProps) {
   return (
-    <div className={clsx(
-      styles.wrapper,
-      {
-        [styles['full-page']]: fullPage
-      })}
-    >
-      <div className={clsx(
-        styles.loader,
-        {
-          [styles[`loader--${color}`]]: color
-        })}
-      >
+    <div className={clsx(styles.wrapper, { [styles['full-page']]: fullPage })}>
+      <div className={clsx(styles.loader, { [styles[`loader--${color}`]]: color })}>
       </div>
 
       {text && (
