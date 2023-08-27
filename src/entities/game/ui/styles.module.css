@@ -1,0 +1,51 @@
+.link {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.card {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+
+  border: 2px solid rgba(22, 119, 255, 0.5);
+}
+
+.card:hover {
+  box-shadow: 0 1px 2px -2px rgba(22, 119, 255, 0.16), 0 3px 6px 0 rgba(22, 119, 255, 0.12), 0 5px 12px 4px rgba(22, 119, 255, 0.09);
+}
+
+.name {
+  margin: 0.5em 0 !important;
+
+  font-size: 20px !important;
+}
+
+@media (min-width: 768px) {
+  .name {
+    font-size: 22px !important;
+  }
+}
+
+@media (min-width: 1600px) {
+  .name {
+    font-size: 24px !important;
+  }
+}
+
+.descriptions span {
+  font-size: 14px !important;
+}
+
+@media (min-width: 768px) {
+  .descriptions span {
+    font-size: 16px !important;
+  }
+}
+
+@media (min-width: 1600px) {
+  .descriptions span {
+    font-size: 18px !important;
+  }
+}
