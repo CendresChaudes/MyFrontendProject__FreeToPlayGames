@@ -26,8 +26,6 @@ export function GamesList() {
 
   return (
     <>
-      <h1 className="visually-hidden">Games list</h1>
-
       <Row gutter={[25, 25]}>
         {games
           .slice((pageNumber - 1) * pageSize, pageNumber * pageSize)

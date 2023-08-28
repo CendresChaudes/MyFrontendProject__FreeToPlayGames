@@ -22,6 +22,7 @@ export function MainPage() {
       <Header hasReturnButton={false} />
 
       <Content className={styles.main}>
+        <h1 className="visually-hidden">Games list</h1>
         <SortFilterPanel />
         <GamesList />
       </Content>
