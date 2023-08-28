@@ -76,15 +76,11 @@ export function GameInfo({ id }: GameInfoProps) {
         <Title className={styles['section-title']} level={2}>
           Minimum System Requirements
         </Title>
-        {currentGame.minimumSystemRequirements
-          ? (
-            <Descriptions
-              className={styles.descriptions}
-              items={getSystemReqDescriptionItems(currentGame)}
-              column={1}
-            />
-          )
-          : 'N/A'}
+        <Descriptions
+          className={styles.descriptions}
+          items={getSystemReqDescriptionItems(currentGame)}
+          column={1}
+        />
       </Col>
     </Row>
   );
