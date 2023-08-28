@@ -7,3 +7,21 @@
 
   background-color: transparent;
 }
+
+.main {
+  display: flex;
+  flex-direction: column;
+  padding: 0 15px;
+}
+
+@media (min-width: 768px) {
+  .main {
+    padding: 0 40px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .main {
+    padding: 0 60px;
+  }
+}

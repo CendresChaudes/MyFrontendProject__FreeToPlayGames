@@ -5,6 +5,7 @@ export {
   changeCurrentPlatformFilter,
   changeCurrentGenreFilter,
   changeCurrentSortType,
+  decrementRefetchAttemptsCount
 } from './model/gameSlice';
 export {
   getGames,
@@ -13,6 +14,8 @@ export {
   getCurrentGameStatusObj,
   getCurrentPlatformFilter,
   getCurrentGenreFilter,
-  getCurrentSortType
+  getCurrentSortType,
+  getRefetchAttemptsCount
 } from './model/selectors';
+export { Card } from './ui/Card';
 export { Platform, Genre, SortType } from './const';

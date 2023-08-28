@@ -1,6 +1,7 @@
-import { Col, Layout, Row } from 'antd';
+import { Layout } from 'antd';
 import { useEffect } from 'react';
 import { Footer } from '@/widgets/footer';
+import { GamesList } from '@/widgets/gamesList';
 import { Header } from '@/widgets/header';
 import { SortFilterPanel } from '@/features/sortFilterPanel';
 import { fetchGames } from '@/entities/game';
@@ -20,13 +21,9 @@ export function MainPage() {
     <Layout className={styles.body}>
       <Header hasReturnButton={false} />
 
-      <Content>
-        <Row justify="center">
-          <Col span={22}>
-            <SortFilterPanel />
-            Content
-          </Col>
-        </Row>
+      <Content className={styles.main}>
+        <SortFilterPanel />
+        <GamesList />
       </Content>
 
       <Footer />

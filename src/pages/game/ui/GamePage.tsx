@@ -22,8 +22,8 @@ export function GamePage() {
     <Layout className={styles.body}>
       <Header />
 
-      <Content>
-        <GameInfo />
+      <Content className={styles.main}>
+        <GameInfo id={Number(id)} />
       </Content>
 
       <Footer />

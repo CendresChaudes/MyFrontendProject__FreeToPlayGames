@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { APIStatus } from '@/shared/api';
 import { fetchCurrentGame } from '../api/fetchCurrentGame';
 import { fetchGames } from '../api/fetchGames';
-import { Platform, Genre, SortType } from '../const';
+import { Platform, Genre, SortType, REFETCH_ATTEMPTS_COUNT } from '../const';
 
 type initialStateType = {
   games: GamesAdaptedType[];
@@ -12,6 +12,7 @@ type initialStateType = {
   currentPlatformFilter: Platform;
   currentGenreFilter: Genre;
   currentSortType: SortType;
+  refetchAttemptsCount: number;
 };
 
 const initialState: initialStateType = {
@@ -22,30 +23,25 @@ const initialState: initialStateType = {
   currentPlatformFilter: Platform.All,
   currentGenreFilter: Genre.All,
   currentSortType: SortType.Relevance,
+  refetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
 };
 
 export const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
-    changeCurrentPlatformFilter(
-      state,
-      action: PayloadAction<Platform>
-    ) {
+    changeCurrentPlatformFilter(state, action: PayloadAction<Platform>) {
       state.currentPlatformFilter = action.payload;
     },
-    changeCurrentGenreFilter(
-      state,
-      action: PayloadAction<Genre>
-    ) {
+    changeCurrentGenreFilter(state, action: PayloadAction<Genre>) {
       state.currentGenreFilter = action.payload;
     },
-    changeCurrentSortType(
-      state,
-      action: PayloadAction<SortType>
-    ) {
+    changeCurrentSortType(state, action: PayloadAction<SortType>) {
       state.currentSortType = action.payload;
     },
+    decrementRefetchAttemptsCount(state) {
+      state.refetchAttemptsCount = state.refetchAttemptsCount - 1;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -55,6 +51,7 @@ export const gameSlice = createSlice({
       .addCase(fetchGames.fulfilled, (state, action) => {
         state.gamesStatus = APIStatus.Fulfilled;
         state.games = action.payload;
+        state.refetchAttemptsCount = REFETCH_ATTEMPTS_COUNT;
       })
       .addCase(fetchGames.rejected, (state) => {
         state.gamesStatus = APIStatus.Rejected;
@@ -65,6 +62,7 @@ export const gameSlice = createSlice({
       .addCase(fetchCurrentGame.fulfilled, (state, action) => {
         state.currentGameStatus = APIStatus.Fulfilled;
         state.currentGame = action.payload;
+        state.refetchAttemptsCount = REFETCH_ATTEMPTS_COUNT;
       })
       .addCase(fetchCurrentGame.rejected, (state) => {
         state.currentGameStatus = APIStatus.Rejected;
@@ -77,4 +75,5 @@ export const {
   changeCurrentPlatformFilter,
   changeCurrentGenreFilter,
   changeCurrentSortType,
+  decrementRefetchAttemptsCount
 } = gameSlice.actions;

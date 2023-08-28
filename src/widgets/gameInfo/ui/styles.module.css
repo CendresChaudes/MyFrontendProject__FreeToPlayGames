@@ -1,18 +1,5 @@
 .wrapper {
   margin: 25px 0;
-  padding: 0 15px;
-}
-
-@media (min-width: 576px) {
-  .wrapper {
-    padding: 0 30px;
-  }
-}
-
-@media (min-width: 992px) {
-  .wrapper {
-    padding: 0 50px;
-  }
 }
 
 .thumbnail {
@@ -60,7 +47,13 @@
 
 .name {
   margin: 0.5em 0 !important;
-  font-size: 26px !important;
+  font-size: 24px !important;
+}
+
+@media (min-width: 768px) {
+  .name {
+    font-size: 26px !important;
+  }
 }
 
 @media (min-width: 992px) {
@@ -71,13 +64,19 @@
 
 @media (min-width: 1600px) {
   .name {
-    font-size: 30px !important;
+    font-size: 28px !important;
   }
 }
 
 .section-title {
   margin: 0.5em 0 !important;
   font-size: 22px !important;
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 24px !important;
+  }
 }
 
 @media (min-width: 1600px) {
@@ -91,7 +90,13 @@
 }
 
 .descriptions span {
-  font-size: 16px !important;
+  font-size: 14px !important;
+}
+
+@media (min-width: 768px) {
+  .descriptions span {
+    font-size: 16px !important;
+  }
 }
 
 @media (min-width: 1600px) {

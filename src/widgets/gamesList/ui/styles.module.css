@@ -1,0 +1,11 @@
+.col {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 25px 0;
+}

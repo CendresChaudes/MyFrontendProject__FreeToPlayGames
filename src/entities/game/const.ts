@@ -1,4 +1,5 @@
 export const DATE_FORMAT = 'DD-MM-YYYY';
+export const REFETCH_ATTEMPTS_COUNT = 3;
 
 export enum Genre {
   All = 'all',
