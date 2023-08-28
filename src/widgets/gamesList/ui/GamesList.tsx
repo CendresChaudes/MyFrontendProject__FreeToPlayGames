@@ -55,6 +55,7 @@ export function GamesList() {
         onChange={(page, size) => {
           setPageNumber(page);
           setPageSize(size);
+          window.scrollTo(0, 0);
         }}
       />
     </>
