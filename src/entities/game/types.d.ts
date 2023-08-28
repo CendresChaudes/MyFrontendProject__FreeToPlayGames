@@ -56,8 +56,14 @@ type GamesAdaptedType = Omit<
   'status' | 'description' | 'minimumSystemRequirements' | 'screenshots'
 >;
 
-type Params = {
+type FetchGamesData = {
+  cancelToken: import('axios').CancelToken;
   platform?: typeof import('./const').platforms[number];
   category?: typeof import('./const').genres[number];
   'sort-by'?: typeof import('./const').sortTypes[number];
+}
+
+type FetchCurrentGameData = {
+  cancelToken: import('axios').CancelToken;
+  id: number;
 }

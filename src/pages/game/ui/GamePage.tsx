@@ -1,4 +1,5 @@
 import { Layout } from 'antd';
+import axios from 'axios';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Footer } from '@/widgets/footer';
@@ -15,7 +16,12 @@ export function GamePage() {
   const { id } = useParams();
 
   useEffect(() => {
-    dispatch(fetchCurrentGame(Number(id)));
+    const source = axios.CancelToken.source();
+    dispatch(fetchCurrentGame({ cancelToken: source.token, id: Number(id) }));
+
+    return () => {
+      source.cancel();
+    };
   }, [id]);
 
   return (

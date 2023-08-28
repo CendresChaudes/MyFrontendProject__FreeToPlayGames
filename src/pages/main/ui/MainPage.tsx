@@ -1,4 +1,5 @@
 import { Layout } from 'antd';
+import axios from 'axios';
 import { useEffect } from 'react';
 import { Footer } from '@/widgets/footer';
 import { GamesList } from '@/widgets/gamesList';
@@ -14,7 +15,12 @@ export function MainPage() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchGames());
+    const source = axios.CancelToken.source();
+    dispatch(fetchGames({ cancelToken: source.token }));
+
+    return () => {
+      source.cancel();
+    };
   }, []);
 
   return (
