@@ -3,18 +3,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  width: 100%;
   margin: 0;
+  flex-grow: 1;
 }
 
 .full-page {
   height: 100vh;
-}
-
-.description {
-  font-size: 36px;
-  font-weight: 700;
 }
 
 .loader {
@@ -46,5 +40,22 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+.text {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .text {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .text {
+    font-size: 32px;
   }
 }
