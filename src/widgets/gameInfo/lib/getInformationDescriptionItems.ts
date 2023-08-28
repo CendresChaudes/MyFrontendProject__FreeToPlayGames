@@ -1,24 +1,25 @@
 import { DescriptionsProps } from 'antd';
+import { isDataItemEmpty } from '@/shared/lib';
 
 export const getInformationDescriptionItems = (currentGame: GameAdaptedType): DescriptionsProps['items'] => ([
   {
     key: '1',
     label: 'Genre',
-    children: currentGame.genre ?? 'N/A',
+    children: isDataItemEmpty(currentGame.genre),
   },
   {
     key: '2',
     label: 'Developer',
-    children: currentGame.developer ?? 'N/A',
+    children: isDataItemEmpty(currentGame.developer),
   },
   {
     key: '3',
     label: 'Publisher',
-    children: currentGame.publisher ?? 'N/A',
+    children: isDataItemEmpty(currentGame.publisher),
   },
   {
     key: '4',
     label: 'Release Date',
-    children: currentGame.releaseDate ?? 'N/A',
+    children: isDataItemEmpty(currentGame.releaseDate),
   },
 ]);

@@ -1,19 +1,20 @@
 import { DescriptionsProps } from 'antd';
+import { isDataItemEmpty } from '@/shared/lib';
 
 export const getCardDescriptionItems = (currentGame: GamesAdaptedType): DescriptionsProps['items'] => ([
   {
     key: '1',
     label: 'Genre',
-    children: currentGame.genre ?? 'N/A',
+    children: isDataItemEmpty(currentGame.genre),
   },
   {
     key: '2',
     label: 'Publisher',
-    children: currentGame.publisher ?? 'N/A',
+    children: isDataItemEmpty(currentGame.publisher),
   },
   {
     key: '3',
     label: 'Release Date',
-    children: currentGame.releaseDate ?? 'N/A',
+    children: isDataItemEmpty(currentGame.releaseDate),
   },
 ]);
