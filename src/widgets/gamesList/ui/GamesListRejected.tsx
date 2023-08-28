@@ -1,17 +1,17 @@
 import {
-  decrementRefetchAttemptsCount,
+  decrementGamesRefetchAttemptsCount,
   fetchGames,
-  getRefetchAttemptsCount,
+  getGamesRefetchAttemptsCount,
 } from '@/entities/game';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { FailedLoading } from '@/shared/lib';
 
 export function GamesListRejected() {
   const dispatch = useAppDispatch();
-  const refetchAttemptsCount = useAppSelector(getRefetchAttemptsCount);
+  const refetchAttemptsCount = useAppSelector(getGamesRefetchAttemptsCount);
 
   const handleButtonClick = () => {
-    dispatch(decrementRefetchAttemptsCount());
+    dispatch(decrementGamesRefetchAttemptsCount());
     dispatch(fetchGames());
   };
 

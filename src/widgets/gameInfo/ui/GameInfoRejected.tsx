@@ -1,7 +1,7 @@
 import {
-  decrementRefetchAttemptsCount,
+  decrementCurrentGameRefetchAttemptsCount,
   fetchCurrentGame,
-  getRefetchAttemptsCount,
+  getCurrentGameRefetchAttemptsCount,
 } from '@/entities/game';
 import {
   FailedLoading,
@@ -15,10 +15,10 @@ type GameInfoRejectedProps = {
 
 export function GameInfoRejected({ id }: GameInfoRejectedProps) {
   const dispatch = useAppDispatch();
-  const refetchAttemptsCount = useAppSelector(getRefetchAttemptsCount);
+  const refetchAttemptsCount = useAppSelector(getCurrentGameRefetchAttemptsCount);
 
   const handleButtonClick = () => {
-    dispatch(decrementRefetchAttemptsCount());
+    dispatch(decrementCurrentGameRefetchAttemptsCount());
     dispatch(fetchCurrentGame(id));
   };
 

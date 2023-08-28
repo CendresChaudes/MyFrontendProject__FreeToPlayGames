@@ -12,7 +12,8 @@ type initialStateType = {
   currentPlatformFilter: Platform;
   currentGenreFilter: Genre;
   currentSortType: SortType;
-  refetchAttemptsCount: number;
+  refetchGamesAttemptsCount: number;
+  refetchCurrentGameAttemptsCount: number;
 };
 
 const initialState: initialStateType = {
@@ -23,7 +24,8 @@ const initialState: initialStateType = {
   currentPlatformFilter: Platform.All,
   currentGenreFilter: Genre.All,
   currentSortType: SortType.Relevance,
-  refetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+  refetchGamesAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+  refetchCurrentGameAttemptsCount: REFETCH_ATTEMPTS_COUNT,
 };
 
 export const gameSlice = createSlice({
@@ -39,8 +41,11 @@ export const gameSlice = createSlice({
     changeCurrentSortType(state, action: PayloadAction<SortType>) {
       state.currentSortType = action.payload;
     },
-    decrementRefetchAttemptsCount(state) {
-      state.refetchAttemptsCount = state.refetchAttemptsCount - 1;
+    decrementGamesRefetchAttemptsCount(state) {
+      state.refetchGamesAttemptsCount = state.refetchGamesAttemptsCount - 1;
+    },
+    decrementCurrentGameRefetchAttemptsCount(state) {
+      state.refetchCurrentGameAttemptsCount = state.refetchCurrentGameAttemptsCount - 1;
     }
   },
   extraReducers: (builder) => {
@@ -51,7 +56,7 @@ export const gameSlice = createSlice({
       .addCase(fetchGames.fulfilled, (state, action) => {
         state.gamesStatus = APIStatus.Fulfilled;
         state.games = action.payload;
-        state.refetchAttemptsCount = REFETCH_ATTEMPTS_COUNT;
+        state.refetchGamesAttemptsCount = REFETCH_ATTEMPTS_COUNT;
       })
       .addCase(fetchGames.rejected, (state) => {
         state.gamesStatus = APIStatus.Rejected;
@@ -62,7 +67,7 @@ export const gameSlice = createSlice({
       .addCase(fetchCurrentGame.fulfilled, (state, action) => {
         state.currentGameStatus = APIStatus.Fulfilled;
         state.currentGame = action.payload;
-        state.refetchAttemptsCount = REFETCH_ATTEMPTS_COUNT;
+        state.refetchCurrentGameAttemptsCount = REFETCH_ATTEMPTS_COUNT;
       })
       .addCase(fetchCurrentGame.rejected, (state) => {
         state.currentGameStatus = APIStatus.Rejected;
@@ -75,5 +80,6 @@ export const {
   changeCurrentPlatformFilter,
   changeCurrentGenreFilter,
   changeCurrentSortType,
-  decrementRefetchAttemptsCount
+  decrementGamesRefetchAttemptsCount,
+  decrementCurrentGameRefetchAttemptsCount
 } = gameSlice.actions;
