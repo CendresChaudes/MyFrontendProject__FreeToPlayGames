@@ -1,3 +1,5 @@
+export const DATE_FORMAT = 'DD-MM-YYYY';
+
 export enum Genre {
   All = 'all',
   MMORPG = 'mmorpg',

@@ -1,9 +1,12 @@
+import dayjs from 'dayjs';
+import { DATE_FORMAT } from '../const';
+
 export const adaptGamesFromAPI = (games: GamesSourceType[]): GamesAdaptedType[] => games.map((game) => {
   const adaptedGame = {
     ...game,
     shortDescription: game.short_description,
     gameUrl: game.game_url,
-    releaseDate: game.release_date,
+    releaseDate: dayjs(game.release_date).format(DATE_FORMAT),
     freetogameProfileUrl: game.freetogame_profile_url
   };
 
