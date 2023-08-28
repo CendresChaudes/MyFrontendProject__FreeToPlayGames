@@ -33,7 +33,7 @@ export function GameInfo({ id }: GameInfoProps) {
     >
       <Col
         xs={{ span: 24 }}
-        lg={{ span: 12 }}
+        md={{ span: 12 }}
       >
         <Image
           className={styles.thumbnail}
@@ -58,7 +58,7 @@ export function GameInfo({ id }: GameInfoProps) {
 
       <Col
         xs={{ span: 24 }}
-        lg={{ span: 12 }}
+        md={{ span: 12 }}
       >
         <Title className={styles.name} level={1} mark>
           {currentGame.title}

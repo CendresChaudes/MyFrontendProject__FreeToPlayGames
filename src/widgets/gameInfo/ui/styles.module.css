@@ -23,12 +23,6 @@
 
 @media (min-width: 768px) {
   .screenshot {
-    height: 400px !important;
-  }
-}
-
-@media (min-width: 992px) {
-  .screenshot {
     height: 275px !important;
   }
 }
