@@ -10,7 +10,7 @@ type GameCache = {
 
 export const fetchCurrentGame = createAsyncThunk<GameAdaptedType, FetchCurrentGameData, AxiosThunkAPI>(
   'api/fetchCurrentGame',
-  async ({ cancelToken, id }, { extra: api }) => {
+  async ({ id, cancelToken }, { extra: api }) => {
     const item = localStorage.getItem(String(id));
 
     if (item) {
@@ -23,7 +23,7 @@ export const fetchCurrentGame = createAsyncThunk<GameAdaptedType, FetchCurrentGa
       localStorage.removeItem(String(id));
     }
 
-    const { data } = await api.get<GameSourceType>(APIRoute.Game, { cancelToken, params: { id } });
+    const { data } = await api.get<GameSourceType>(APIRoute.Game, { params: { id }, cancelToken });
     const adaptedData = adaptCurrentGameFromAPI(data);
 
     localStorage.setItem(String(id), JSON.stringify({

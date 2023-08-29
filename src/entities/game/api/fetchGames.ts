@@ -4,8 +4,8 @@ import { APIRoute } from '@/const';
 
 export const fetchGames = createAsyncThunk<GamesAdaptedType[], FetchGamesData, AxiosThunkAPI>(
   'api/fetchGames',
-  async ({ cancelToken, ...args }, { extra: api }) => {
-    const { data } = await api.get<GamesSourceType[]>(APIRoute.Games, { cancelToken, params: args });
+  async ({ params, cancelToken }, { extra: api }) => {
+    const { data } = await api.get<GamesSourceType[]>(APIRoute.Games, { params, cancelToken });
 
     return adaptGamesFromAPI(data);
   }
