@@ -19,7 +19,7 @@ export function GameInfoRejected({ id }: GameInfoRejectedProps) {
 
   const handleButtonClick = () => {
     dispatch(decrementCurrentGameRefetchAttemptsCount());
-    dispatch(fetchCurrentGame(id));
+    dispatch(fetchCurrentGame({ id: Number(id) }));
   };
 
   return <FailedLoading refetchAttemptsCount={refetchAttemptsCount} onClick={handleButtonClick} />;

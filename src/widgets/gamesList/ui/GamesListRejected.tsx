@@ -12,7 +12,7 @@ export function GamesListRejected() {
 
   const handleButtonClick = () => {
     dispatch(decrementGamesRefetchAttemptsCount());
-    dispatch(fetchGames());
+    dispatch(fetchGames({}));
   };
 
   return (
