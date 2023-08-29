@@ -1,5 +1,6 @@
 export const DATE_FORMAT = 'DD-MM-YYYY';
 export const REFETCH_ATTEMPTS_COUNT = 3;
+export const CACHE_TIME = 5 * 60 * 1000;
 
 export enum Genre {
   All = 'all',
