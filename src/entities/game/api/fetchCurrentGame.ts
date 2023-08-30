@@ -12,13 +12,11 @@ type GameCache = {
 export const fetchCurrentGame = createAsyncThunk<GameAdaptedType, FetchCurrentGameData, AxiosThunkAPI>(
   'api/fetchCurrentGame',
   async ({ id, cancelToken }, { extra: api }) => {
-    const item = getItemFromCache(String(id));
+    const item = getItemFromCache(String(id)) as GameCache;
 
     if (item) {
-      const cache = JSON.parse(item) as GameCache;
-
-      if (cache.cacheExpireTime > new Date().getTime()) {
-        return cache.data;
+      if (item.cacheExpireTime > new Date().getTime()) {
+        return item.data;
       }
 
       removeItemFromCache(String(id));
