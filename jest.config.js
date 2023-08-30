@@ -1,6 +1,16 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 export default {
+  testEnvironment: 'node',
   preset: 'ts-jest',
+  moduleNameMapper: {
+    "^@/(.*)$": "<rootDir>/src/$1",
+    "\\.css$": "<rootDir>/__mocks__/styleMock.js"
+  },
+  globals: {
+    'ts-jest': {
+      isolatedModules: true,
+    },
+  },
   collectCoverageFrom: [
     '**/*.{ts,tsx}',
     '!**/node_modules/**',
@@ -10,10 +20,4 @@ export default {
     '!**/types.d.ts',
     '!**/*.config.ts'
   ],
-  testEnvironment: 'node',
-  globals: {
-    'ts-jest': {
-      isolatedModules: true,
-    },
-  },
 };
