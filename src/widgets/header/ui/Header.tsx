@@ -1,7 +1,7 @@
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Layout, Button, Row, Col } from 'antd';
-import { Link } from 'react-router-dom';
-import { redirectToRoute, useAppDispatch, useBreakpoint } from '@/shared/lib';
+import { Link, useNavigate } from 'react-router-dom';
+import { useBreakpoint } from '@/shared/lib';
 import { Logo } from '@/shared/ui';
 import styles from './styles.module.css';
 import { AppRoute } from '@/const';
@@ -13,8 +13,8 @@ type HeaderProps = {
 const { Header: _Header } = Layout;
 
 export function Header({ hasReturnButton = true }: HeaderProps) {
-  const dispatch = useAppDispatch();
   const currentBreakpoint = useBreakpoint();
+  const navigate = useNavigate();
 
   return (
     <_Header className={styles.header}>
@@ -27,9 +27,7 @@ export function Header({ hasReturnButton = true }: HeaderProps) {
               size={(currentBreakpoint !== 'xs' && currentBreakpoint !== 'sm') ? 'large' : 'middle'}
               icon={<ArrowLeftOutlined />}
               aria-label="Return"
-              onClick={() => {
-                dispatch(redirectToRoute(AppRoute.Root));
-              }}
+              onClick={() => navigate(AppRoute.Root)}
             >
               {currentBreakpoint !== 'xs' && 'Return'}
             </Button>
