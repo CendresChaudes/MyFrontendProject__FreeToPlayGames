@@ -1,5 +1,29 @@
 .wrapper {
-  margin: 25px 0;
+  margin: 25px 0 !important;
+}
+
+@media (max-width: 768px) {
+  .media-wrapper {
+    padding: 0 !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .media-wrapper {
+    padding-left: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .info-wrapper {
+    padding: 0 15px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .info-wrapper {
+    padding-right: 0 !important;
+  }
 }
 
 .thumbnail {

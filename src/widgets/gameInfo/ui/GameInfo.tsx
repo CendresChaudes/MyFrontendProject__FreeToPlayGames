@@ -29,9 +29,10 @@ export function GameInfo({ id }: GameInfoProps) {
     <Row
       className={styles.wrapper}
       justify="space-between"
-      gutter={[50, 25]}
+      gutter={[40, 25]}
     >
       <Col
+        className={styles['media-wrapper']}
         xs={{ span: 24 }}
         md={{ span: 12 }}
       >
@@ -57,6 +58,7 @@ export function GameInfo({ id }: GameInfoProps) {
       </Col>
 
       <Col
+        className={styles['info-wrapper']}
         xs={{ span: 24 }}
         md={{ span: 12 }}
       >
