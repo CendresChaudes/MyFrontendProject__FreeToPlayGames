@@ -1,6 +1,7 @@
 # Веб-приложение «Free-To-Play Games»
 
 ![Build lint status](https://github.com/CendresChaudes/PP_FreeToPlayGames/actions/workflows/lint.yml/badge.svg)&ensp;
+![Build test status](https://github.com/CendresChaudes/PP_FreeToPlayGames/actions/workflows/test.yml/badge.svg)&ensp;
 
 ---
 
