@@ -19,7 +19,7 @@ export function Header({ hasReturnButton = true }: HeaderProps) {
   return (
     <_Header className={styles.header}>
       <Row className={styles.row} align="middle">
-        <Col xs={{ span: hasReturnButton ? 4 : 0 }} sm={{ span: 8 }}>
+        <Col span={8}>
           {hasReturnButton && (
             <Button
               type="primary"
@@ -34,7 +34,7 @@ export function Header({ hasReturnButton = true }: HeaderProps) {
           )}
         </Col>
 
-        <Col xs={{ span: hasReturnButton ? 20 : 24 }} sm={{ span: 8 }}>
+        <Col span={8}>
           <Link className={styles.link} to={AppRoute.Root}>
             <Logo className={styles.logo} />
           </Link>
