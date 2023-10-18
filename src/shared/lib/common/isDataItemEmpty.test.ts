@@ -1,25 +1,31 @@
 import { isDataItemEmpty } from './isDataItemEmpty';
 
 describe('Function: isDataItemEmpty', () => {
-  test('should return item when item exist', () => {
-    const dataItem = 123;
-    const expectedResult = dataItem;
+  test('Should return an item value when it exists (not null or undefined)', () => {
+    const mockItemValue = 123;
 
-    expect(isDataItemEmpty(dataItem)).toBe(expectedResult);
+    const result = isDataItemEmpty(mockItemValue);
+    const expectedResult = 123;
+
+    expect(result).toBe(expectedResult);
   });
 
-  test('should return "N/A" when item is not exist', () => {
-    const dataItem = false;
+  test('Should return "N/A" when an item value is not exist (null or undefined)', () => {
+    const mockItemValue = undefined;
+
+    const result = isDataItemEmpty(mockItemValue);
     const expectedResult = 'N/A';
 
-    expect(isDataItemEmpty(dataItem)).toBe(expectedResult);
+    expect(result).toBe(expectedResult);
   });
 
-  test('should return "N/A" when item content is "?"', () => {
-    const dataItem = '?';
+  test('Should return "N/A" when item content is "?"', () => {
+    const mockItemValue = '?';
+
+    const result = isDataItemEmpty<string>(mockItemValue);
     const expectedResult = 'N/A';
 
-    expect(isDataItemEmpty<string>(dataItem)).toBe(expectedResult);
+    expect(result).toBe(expectedResult);
   });
 });
 

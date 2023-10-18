@@ -1,8 +1,8 @@
 import { getCardDescriptionItems } from './getCardDescriptionItems';
 
 describe('Function: getCardDescriptionItems', () => {
-  test('should return array of description items', () => {
-    const data = {
+  test('Should return an array of description items', () => {
+    const mockData: GamesAdaptedType = {
       id: 540,
       title: 'Overwatch 2',
       thumbnail: 'https://www.freetogame.com/g/540/thumbnail.jpg',
@@ -16,24 +16,26 @@ describe('Function: getCardDescriptionItems', () => {
       freetogameProfileUrl: 'https://www.freetogame.com/overwatch-2'
     };
 
+    const result = getCardDescriptionItems(mockData);
+
     const expectedResult = [
       {
         key: '1',
         label: 'Genre',
-        children: data.genre,
+        children: mockData.genre,
       },
       {
         key: '2',
         label: 'Publisher',
-        children: data.publisher,
+        children: mockData.publisher,
       },
       {
         key: '3',
         label: 'Release Date',
-        children: data.releaseDate,
+        children: mockData.releaseDate,
       },
     ];
 
-    expect(getCardDescriptionItems(data)).toEqual(expectedResult);
+    expect(result).toEqual(expectedResult);
   });
 });

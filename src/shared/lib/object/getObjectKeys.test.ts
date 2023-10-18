@@ -1,23 +1,26 @@
 import { getObjectKeys } from './getObjectKeys';
 
 describe('Function: getObjectKeys', () => {
-  test('should return array of object keys', () => {
-    const object = {
+  test('Should return an array of object keys', () => {
+    const mockObject = {
       a: 123,
       b: '123',
       c: [1, 2, 3]
     };
 
+    const result = getObjectKeys(mockObject);
     const expectedResult = ['a', 'b', 'c'];
 
-    expect(getObjectKeys(object)).toEqual(expectedResult);
+    expect(result).toEqual(expectedResult);
   });
 
-  test('should return empty array', () => {
-    const object = {};
+  test('Should return an empty array', () => {
+    const mockObject = {};
+
+    const result = getObjectKeys(mockObject);
     const expectedResult: [] = [];
 
-    expect(getObjectKeys(object)).toEqual(expectedResult);
+    expect(result).toEqual(expectedResult);
   });
 });
 

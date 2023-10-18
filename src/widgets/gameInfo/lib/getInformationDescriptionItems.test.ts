@@ -1,8 +1,8 @@
 import { getInformationDescriptionItems } from './getInformationDescriptionItems';
 
 describe('Function: getInformationDescriptionItems', () => {
-  test('should return array of description items', () => {
-    const data = {
+  test('Should return an array of description items', () => {
+    const mockData: GameAdaptedType = {
       id: 452,
       title: 'Call Of Duty: Warzone',
       thumbnail: 'https://www.freetogame.com/g/452/thumbnail.jpg',
@@ -26,30 +26,32 @@ describe('Function: getInformationDescriptionItems', () => {
       screenshots: []
     };
 
+    const result = getInformationDescriptionItems(mockData);
+
     const expectedResult = [
       {
         key: '1',
         label: 'Genre',
-        children: data.genre,
+        children: mockData.genre,
       },
       {
         key: '2',
         label: 'Developer',
-        children: data.developer,
+        children: mockData.developer,
       },
       {
         key: '3',
         label: 'Publisher',
-        children: data.publisher,
+        children: mockData.publisher,
       },
       {
         key: '4',
         label: 'Release Date',
-        children: data.releaseDate,
+        children: mockData.releaseDate,
       },
     ];
 
-    expect(getInformationDescriptionItems(data)).toEqual(expectedResult);
+    expect(result).toEqual(expectedResult);
   });
 });
 

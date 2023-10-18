@@ -1,18 +1,22 @@
 import { capitalizeWord } from './capitalizeWord';
 
 describe('Function: capitalizeWord', () => {
-  test('should capitalize a word with more one letter', () => {
-    const string = 'word';
+  test('Should capitalize a word with more one letter', () => {
+    const mockString = 'word';
+
+    const result = capitalizeWord(mockString);
     const expectedResult = 'Word';
 
-    expect(capitalizeWord(string)).toBe(expectedResult);
+    expect(result).toBe(expectedResult);
   });
 
-  test('should capitalize a word with one letter', () => {
-    const string = 'w';
+  test('Should capitalize a word with one letter', () => {
+    const mockString = 'w';
+
+    const result = capitalizeWord(mockString);
     const expectedResult = 'W';
 
-    expect(capitalizeWord(string)).toBe(expectedResult);
+    expect(result).toBe(expectedResult);
   });
 });
 

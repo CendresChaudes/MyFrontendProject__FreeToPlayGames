@@ -4,30 +4,28 @@
 import { getKeyByValue } from './getKeyByValue';
 
 describe('Function: getKeyByValue', () => {
-  test('should return object key by value if key with this value is exist', () => {
-    const object = {
-      a: 123,
-      b: '123',
-      c: [1, 2, 3]
-    };
+  const mockObject = {
+    a: 123,
+    b: '123',
+    c: [1, 2, 3]
+  };
 
-    const value = '123';
+  test('Should return an object key by value if a key with this value exists', () => {
+    const value = mockObject.b;
+
+    const result = getKeyByValue(mockObject, value);
     const expectedResult = 'b';
 
-    expect(getKeyByValue(object, value)).toEqual(expectedResult);
+    expect(result).toEqual(expectedResult);
   });
 
-  test('should return "undefined" if key with this value is not exist', () => {
-    const object = {
-      a: 123,
-      b: '123',
-      c: [1, 2, 3]
-    };
-
+  test('Should return "undefined" if a key with this value does not exist', () => {
     const value = 'any data';
+
+    const result = getKeyByValue(mockObject, value);
     const expectedResult = undefined;
 
-    expect(getKeyByValue(object, value)).toEqual(expectedResult);
+    expect(result).toEqual(expectedResult);
   });
 });
 

@@ -1,8 +1,8 @@
 import { getSystemReqDescriptionItems } from './getSystemReqDescriptionItems';
 
 describe('Function: getSystemReqDescriptionItems', () => {
-  test('should return array of description items', () => {
-    const data = {
+  test('Should return an array of description items', () => {
+    const mockData: GameAdaptedType = {
       id: 452,
       title: 'Call Of Duty: Warzone',
       thumbnail: 'https://www.freetogame.com/g/452/thumbnail.jpg',
@@ -26,35 +26,37 @@ describe('Function: getSystemReqDescriptionItems', () => {
       screenshots: []
     };
 
+    const result = getSystemReqDescriptionItems(mockData);
+
     const expectedResult = [
       {
         key: '1',
         label: 'OS',
-        children: data.minimumSystemRequirements.os,
+        children: mockData.minimumSystemRequirements.os,
       },
       {
         key: '2',
         label: 'Processor',
-        children: data.minimumSystemRequirements.processor,
+        children: mockData.minimumSystemRequirements.processor,
       },
       {
         key: '3',
         label: 'Memory',
-        children: data.minimumSystemRequirements.memory,
+        children: mockData.minimumSystemRequirements.memory,
       },
       {
         key: '4',
         label: 'Graphics',
-        children: data.minimumSystemRequirements.graphics,
+        children: mockData.minimumSystemRequirements.graphics,
       },
       {
         key: '5',
         label: 'Storage',
-        children: data.minimumSystemRequirements.storage,
+        children: mockData.minimumSystemRequirements.storage,
       },
     ];
 
-    expect(getSystemReqDescriptionItems(data)).toEqual(expectedResult);
+    expect(result).toEqual(expectedResult);
   });
 });
 
