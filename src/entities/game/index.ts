@@ -10,7 +10,9 @@ export {
 } from './model/gameSlice';
 export {
   getGames,
+  getGamesStatus,
   getCurrentGame,
+  getCurrentGameStatus,
   getGamesStatusObj,
   getCurrentGameStatusObj,
   getCurrentPlatformFilter,
