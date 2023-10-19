@@ -8,17 +8,18 @@ describe('Function: getObjectKeys', () => {
       c: [1, 2, 3]
     };
 
-    const result = getObjectKeys(mockObject);
     const expectedResult = ['a', 'b', 'c'];
+
+    const result = getObjectKeys(mockObject);
 
     expect(result).toEqual(expectedResult);
   });
 
   test('Should return an empty array', () => {
     const mockObject = {};
+    const expectedResult: [] = [];
 
     const result = getObjectKeys(mockObject);
-    const expectedResult: [] = [];
 
     expect(result).toEqual(expectedResult);
   });

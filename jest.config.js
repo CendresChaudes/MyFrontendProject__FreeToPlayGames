@@ -17,6 +17,7 @@ export default {
     '!**/node_modules/**',
     '!**/vendor/**',
     '!**/index.{ts,tsx}',
+    '!**/tests-index.ts',
     '!**/const.ts',
     '!**/types.d.ts',
     '!**/*.config.ts'

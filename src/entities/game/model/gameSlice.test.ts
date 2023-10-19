@@ -34,7 +34,7 @@ describe('Redux slice: gameSlice', () => {
     test('Should change a current platform filter', () => {
       const platformFilter = Platform.Browser;
 
-      const expectedState = {
+      const expectedResult = {
         games: [],
         gamesStatus: APIStatus.Idle,
         currentGame: null,
@@ -48,7 +48,7 @@ describe('Redux slice: gameSlice', () => {
 
       const result = gameSlice.reducer(initialState, changeCurrentPlatformFilter(platformFilter));
 
-      expect(result).toEqual(expectedState);
+      expect(result).toEqual(expectedResult);
     });
   });
 
@@ -56,7 +56,7 @@ describe('Redux slice: gameSlice', () => {
     test('Should change a current genre filter', () => {
       const genreFilter = Genre.MMORPG;
 
-      const expectedState = {
+      const expectedResult = {
         games: [],
         gamesStatus: APIStatus.Idle,
         currentGame: null,
@@ -70,7 +70,7 @@ describe('Redux slice: gameSlice', () => {
 
       const result = gameSlice.reducer(initialState, changeCurrentGenreFilter(genreFilter));
 
-      expect(result).toEqual(expectedState);
+      expect(result).toEqual(expectedResult);
     });
   });
 
@@ -78,7 +78,7 @@ describe('Redux slice: gameSlice', () => {
     test('Should change a current sort type', () => {
       const sortType = SortType.Alphabetical;
 
-      const expectedState = {
+      const expectedResult = {
         games: [],
         gamesStatus: APIStatus.Idle,
         currentGame: null,
@@ -92,13 +92,13 @@ describe('Redux slice: gameSlice', () => {
 
       const result = gameSlice.reducer(initialState, changeCurrentSortType(sortType));
 
-      expect(result).toEqual(expectedState);
+      expect(result).toEqual(expectedResult);
     });
   });
 
   describe('Reducer: decrementGamesRefetchAttemptsCount', () => {
     test('Should decrement games refetch attempts count by one', () => {
-      const expectedState = {
+      const expectedResult = {
         games: [],
         gamesStatus: APIStatus.Idle,
         currentGame: null,
@@ -112,13 +112,13 @@ describe('Redux slice: gameSlice', () => {
 
       const result = gameSlice.reducer(initialState, decrementGamesRefetchAttemptsCount);
 
-      expect(result).toEqual(expectedState);
+      expect(result).toEqual(expectedResult);
     });
   });
 
   describe('Reducer: decrementCurrentGameRefetchAttemptsCount', () => {
     test('Should decrement games refetch attempts count by one', () => {
-      const expectedState = {
+      const expectedResult = {
         games: [],
         gamesStatus: APIStatus.Idle,
         currentGame: null,
@@ -132,13 +132,13 @@ describe('Redux slice: gameSlice', () => {
 
       const result = gameSlice.reducer(initialState, decrementCurrentGameRefetchAttemptsCount);
 
-      expect(result).toEqual(expectedState);
+      expect(result).toEqual(expectedResult);
     });
   });
 
   describe('Extra reducer: fetchGames', () => {
     test('fetchGames.pending should set "gamesStatus" to "APIStatus.Pending"', () => {
-      const expectedState = {
+      const expectedResult = {
         games: [],
         gamesStatus: APIStatus.Pending,
         currentGame: null,
@@ -152,7 +152,7 @@ describe('Redux slice: gameSlice', () => {
 
       const result = gameSlice.reducer(initialState, fetchGames.pending);
 
-      expect(result).toEqual(expectedState);
+      expect(result).toEqual(expectedResult);
     });
 
     test(`fetchGames.fulfilled should set "gamesStatus" to "APIStatus.Fulfilled", "games" to array with data,
@@ -177,7 +177,7 @@ describe('Redux slice: gameSlice', () => {
         },
       };
 
-      const expectedState = {
+      const expectedResult = {
         games: mockGamesData,
         gamesStatus: APIStatus.Fulfilled,
         currentGame: null,
@@ -191,11 +191,11 @@ describe('Redux slice: gameSlice', () => {
 
       const result = gameSlice.reducer(stateBeforeFulfilled, fetchGames.fulfilled(mockGamesData, '', mockParams));
 
-      expect(result).toEqual(expectedState);
+      expect(result).toEqual(expectedResult);
     });
 
     test('fetchGames.rejected should set "gamesStatus" to "APIStatus.Rejected"', () => {
-      const expectedState = {
+      const expectedResult = {
         games: [],
         gamesStatus: APIStatus.Rejected,
         currentGame: null,
@@ -209,13 +209,13 @@ describe('Redux slice: gameSlice', () => {
 
       const result = gameSlice.reducer(initialState, fetchGames.rejected);
 
-      expect(result).toEqual(expectedState);
+      expect(result).toEqual(expectedResult);
     });
   });
 
   describe('Extra reducer: fetchCurrentGame', () => {
     test('fetchCurrentGame.pending should set "currentGameStatus" to "APIStatus.Pending"', () => {
-      const expectedState = {
+      const expectedResult = {
         games: [],
         gamesStatus: APIStatus.Idle,
         currentGame: null,
@@ -229,7 +229,7 @@ describe('Redux slice: gameSlice', () => {
 
       const result = gameSlice.reducer(initialState, fetchCurrentGame.pending);
 
-      expect(result).toEqual(expectedState);
+      expect(result).toEqual(expectedResult);
     });
 
     test(`fetchCurrentGame.fulfilled should set "currentGameStatus" to "APIStatus.Fulfilled", "currentGame" to current game data,
@@ -248,7 +248,7 @@ describe('Redux slice: gameSlice', () => {
 
       const mockParams: FetchCurrentGameData = { id: 1 };
 
-      const expectedState = {
+      const expectedResult = {
         games: [],
         gamesStatus: APIStatus.Idle,
         currentGame: mockCurrentGameData,
@@ -262,7 +262,7 @@ describe('Redux slice: gameSlice', () => {
 
       const result = gameSlice.reducer(stateBeforeFulfilled, fetchCurrentGame.fulfilled(mockCurrentGameData, '', mockParams));
 
-      expect(result).toEqual(expectedState);
+      expect(result).toEqual(expectedResult);
     });
 
     test('fetchCurrentGame.rejected should set "currentGameStatus" to "APIStatus.Rejected", "currentGame" to "null"', () => {
@@ -278,7 +278,7 @@ describe('Redux slice: gameSlice', () => {
         currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
       };
 
-      const expectedState = {
+      const expectedResult = {
         games: [],
         gamesStatus: APIStatus.Idle,
         currentGame: null,
@@ -292,7 +292,7 @@ describe('Redux slice: gameSlice', () => {
 
       const result = gameSlice.reducer(stateBeforeRejected, fetchCurrentGame.rejected);
 
-      expect(result).toEqual(expectedState);
+      expect(result).toEqual(expectedResult);
     });
   });
 });

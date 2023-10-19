@@ -12,18 +12,18 @@ describe('Function: getKeyByValue', () => {
 
   test('Should return an object key by value if a key with this value exists', () => {
     const value = mockObject.b;
+    const expectedResult = 'b';
 
     const result = getKeyByValue(mockObject, value);
-    const expectedResult = 'b';
 
     expect(result).toEqual(expectedResult);
   });
 
   test('Should return "undefined" if a key with this value does not exist', () => {
     const value = 'any data';
+    const expectedResult = undefined;
 
     const result = getKeyByValue(mockObject, value);
-    const expectedResult = undefined;
 
     expect(result).toEqual(expectedResult);
   });
