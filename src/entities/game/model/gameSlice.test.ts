@@ -1,4 +1,4 @@
-import { APIStatus } from '@/shared/api';
+import { APIStatus } from '@/shared/api/const';
 import { fetchCurrentGame } from '../api/fetchCurrentGame';
 import { fetchGames } from '../api/fetchGames';
 import { Platform, Genre, SortType, REFETCH_ATTEMPTS_COUNT } from '../const';
@@ -13,6 +13,23 @@ import {
   decrementCurrentGameRefetchAttemptsCount,
   initialStateType,
 } from './gameSlice';
+
+jest.mock('@/shared/lib', () => ({
+  __esModule: true
+}));
+
+jest.mock('@/shared/api', () => ({
+  __esModule: true,
+  APIStatus
+}));
+
+jest.mock('../api/adaptGamesFromAPI', () => ({
+  adaptGamesFromAPI: () => null
+}));
+
+jest.mock('../api/adaptCurrentGameFromAPI', () => ({
+  adaptCurrentGameFromAPI: () => null
+}));
 
 describe('Redux slice: gameSlice', () => {
   const mockGamesData = createMockGamesData();

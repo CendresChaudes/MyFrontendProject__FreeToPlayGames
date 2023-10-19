@@ -1,6 +1,10 @@
 import { createMockGamesData } from '../tests-lib/createMockGamesData';
 import { getCardDescriptionItems } from './getCardDescriptionItems';
 
+jest.mock('@/shared/lib', () => ({
+  isDataItemEmpty: <T>(item: T) => (!item || item === '?') ? 'N/A' : item
+}));
+
 describe('Function: getCardDescriptionItems', () => {
   test('Should return an array of description items', () => {
     const mockDataFromGamesArray = createMockGamesData()[0];

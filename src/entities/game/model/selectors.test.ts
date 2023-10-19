@@ -1,4 +1,4 @@
-import { APIStatus } from '@/shared/api';
+import { APIStatus } from '@/shared/api/const';
 import { Platform, Genre, SortType } from '../const';
 import { createMockCurrentGameData } from '../tests-lib/createMockCurrentGameData';
 import { createMockGamesData } from '../tests-lib/createMockGamesData';
@@ -14,6 +14,10 @@ import {
   getCurrentGameRefetchAttemptsCount,
 } from './selectors';
 
+jest.mock('@/shared/lib', () => ({
+  createStatusObj: () => ({})
+}));
+
 describe('Redux selectors: "game" domain', () => {
   const mockGamesData = createMockGamesData();
   const mockCurrentGameData = createMockCurrentGameData();
@@ -23,7 +27,7 @@ describe('Redux selectors: "game" domain', () => {
       games: mockGamesData,
       gamesStatus: APIStatus.Idle,
       currentGame: mockCurrentGameData,
-      currentGameStatus: APIStatus.Pending,
+      currentGameStatus: APIStatus.Idle,
       currentPlatformFilter: Platform.All,
       currentGenreFilter: Genre.Shooter,
       currentSortType: SortType.Relevance,

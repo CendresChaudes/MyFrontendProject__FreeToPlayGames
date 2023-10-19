@@ -1,6 +1,10 @@
 import { createMockCurrentGameData } from '@/entities/game/tests-index';
 import { getSystemReqDescriptionItems } from './getSystemReqDescriptionItems';
 
+jest.mock('@/shared/lib', () => ({
+  isDataItemEmpty: <T>(item: T) => (!item || item === '?') ? 'N/A' : item
+}));
+
 describe('Function: getSystemReqDescriptionItems', () => {
   test('Should return an array of description items', () => {
     const mockCurrentGameData = createMockCurrentGameData();
