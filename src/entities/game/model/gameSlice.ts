@@ -53,7 +53,7 @@ export const gameSlice = createSlice({
       .addCase(fetchGames.pending, (state) => {
         state.gamesStatus = APIStatus.Pending;
       })
-      .addCase(fetchGames.fulfilled, (state, action) => {
+      .addCase(fetchGames.fulfilled, (state, action: PayloadAction<GamesAdaptedType[]>) => {
         state.gamesStatus = APIStatus.Fulfilled;
         state.games = action.payload;
         state.gamesRefetchAttemptsCount = REFETCH_ATTEMPTS_COUNT;
@@ -64,7 +64,7 @@ export const gameSlice = createSlice({
       .addCase(fetchCurrentGame.pending, (state) => {
         state.currentGameStatus = APIStatus.Pending;
       })
-      .addCase(fetchCurrentGame.fulfilled, (state, action) => {
+      .addCase(fetchCurrentGame.fulfilled, (state, action: PayloadAction<GameAdaptedType>) => {
         state.currentGameStatus = APIStatus.Fulfilled;
         state.currentGame = action.payload;
         state.currentGameRefetchAttemptsCount = REFETCH_ATTEMPTS_COUNT;
@@ -81,5 +81,7 @@ export const {
   changeCurrentGenreFilter,
   changeCurrentSortType,
   decrementGamesRefetchAttemptsCount,
-  decrementCurrentGameRefetchAttemptsCount
+  decrementCurrentGameRefetchAttemptsCount,
 } = gameSlice.actions;
+
+export type { initialStateType };
