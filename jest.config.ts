@@ -3,8 +3,8 @@ export default {
   testEnvironment: 'jsdom',
   preset: 'ts-jest',
   moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/src/$1",
-    "\\.css$": "<rootDir>/__mocks__/styleMock.js"
+    '^@/(.*)$': '<rootDir>/src/$1',
+    '\\.css$': '<rootDir>/__mocks__/styleMock.js'
   },
   globals: {
     'ts-jest': {
@@ -22,4 +22,5 @@ export default {
     '!**/types.d.ts',
     '!**/*.config.ts'
   ],
+  setupFilesAfterEnv: ['./src/setupTests.ts'],
 };
