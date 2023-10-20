@@ -4,7 +4,7 @@ import MockAdapter from 'axios-mock-adapter';
 import thunk from 'redux-thunk';
 import { createAPI } from '@/shared/api';
 import * as storageLibs from '@/shared/lib/storage';
-import { createMockCurrentGameData } from '../tests-lib/createMockCurrentGameData';
+import { createAdaptedMockCurrentGameData } from '../tests-lib/createAdaptedMockCurrentGameData';
 import { fetchCurrentGame } from './fetchCurrentGame';
 import { APIRoute } from '@/const';
 
@@ -23,7 +23,7 @@ describe('Async action: fetchCurrentGame', () => {
   const mockStoreCreator = configureMockStore<State, Action<string>, AppThunkDispatch>(middlewares);
   const mockStore: ReturnType<typeof mockStoreCreator> = mockStoreCreator({ game: { games: [] } });
 
-  const mockCurrentGameData = createMockCurrentGameData();
+  const mockCurrentGameData = createAdaptedMockCurrentGameData();
   const mockParams: FetchCurrentGameData = { id: 1 };
 
   const mockExpiredCacheData = {

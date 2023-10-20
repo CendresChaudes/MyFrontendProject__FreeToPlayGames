@@ -1,7 +1,7 @@
 import { APIStatus } from '@/shared/api/const';
 import { Platform, Genre, SortType } from '../const';
-import { createMockCurrentGameData } from '../tests-lib/createMockCurrentGameData';
-import { createMockGamesData } from '../tests-lib/createMockGamesData';
+import { createAdaptedMockCurrentGameData } from '../tests-lib/createAdaptedMockCurrentGameData';
+import { createAdaptedMockGamesData } from '../tests-lib/createAdaptedMockGamesData';
 import {
   getGames,
   getGamesStatus,
@@ -19,8 +19,8 @@ jest.mock('@/shared/lib', () => ({
 }));
 
 describe('Redux selectors: "game" domain', () => {
-  const mockGamesData = createMockGamesData();
-  const mockCurrentGameData = createMockCurrentGameData();
+  const mockGamesData = createAdaptedMockGamesData();
+  const mockCurrentGameData = createAdaptedMockCurrentGameData();
 
   const mockStore: State = {
     game: {

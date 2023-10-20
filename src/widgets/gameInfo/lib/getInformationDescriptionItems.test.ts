@@ -1,4 +1,4 @@
-import { createMockCurrentGameData } from '@/entities/game/tests-index';
+import { createAdaptedMockCurrentGameData } from '@/entities/game/tests-index';
 import { getInformationDescriptionItems } from './getInformationDescriptionItems';
 
 jest.mock('@/shared/lib', () => ({
@@ -7,7 +7,7 @@ jest.mock('@/shared/lib', () => ({
 
 describe('Function: getInformationDescriptionItems', () => {
   test('Should return an array of description items', () => {
-    const mockCurrentGameData = createMockCurrentGameData();
+    const mockCurrentGameData = createAdaptedMockCurrentGameData();
 
     const expectedResult = [
       {

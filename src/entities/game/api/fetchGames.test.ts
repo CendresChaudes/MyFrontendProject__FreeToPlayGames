@@ -4,7 +4,7 @@ import MockAdapter from 'axios-mock-adapter';
 import thunk from 'redux-thunk';
 import { createAPI } from '@/shared/api';
 import { Platform, Genre, SortType } from '../const';
-import { createMockGamesData } from '../tests-lib/createMockGamesData';
+import { createAdaptedMockGamesData } from '../tests-lib/createAdaptedMockGamesData';
 import { fetchGames } from './fetchGames';
 import { APIRoute } from '@/const';
 
@@ -22,7 +22,7 @@ describe('Async action: fetchGames', () => {
   const mockStore: ReturnType<typeof mockStoreCreator> = mockStoreCreator({ game: { games: [] } });
 
   test('Should return an array of games data', async () => {
-    const mockGamesData = createMockGamesData();
+    const mockGamesData = createAdaptedMockGamesData();
 
     const mockParams: FetchGamesData = {
       params: {

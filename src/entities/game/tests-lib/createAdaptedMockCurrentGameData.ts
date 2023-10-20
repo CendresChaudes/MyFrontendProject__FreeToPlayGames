@@ -1,4 +1,4 @@
-export const createMockCurrentGameData = (): GameAdaptedType => ({
+export const createAdaptedMockCurrentGameData = (): GameAdaptedType => ({
   id: 452,
   title: 'Call Of Duty: Warzone',
   thumbnail: 'https://www.freetogame.com/g/452/thumbnail.jpg',

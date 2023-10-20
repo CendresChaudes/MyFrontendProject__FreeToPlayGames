@@ -2,8 +2,8 @@ import { APIStatus } from '@/shared/api/const';
 import { fetchCurrentGame } from '../api/fetchCurrentGame';
 import { fetchGames } from '../api/fetchGames';
 import { Platform, Genre, SortType, REFETCH_ATTEMPTS_COUNT } from '../const';
-import { createMockCurrentGameData } from '../tests-lib/createMockCurrentGameData';
-import { createMockGamesData } from '../tests-lib/createMockGamesData';
+import { createAdaptedMockCurrentGameData } from '../tests-lib/createAdaptedMockCurrentGameData';
+import { createAdaptedMockGamesData } from '../tests-lib/createAdaptedMockGamesData';
 import {
   gameSlice,
   changeCurrentPlatformFilter,
@@ -32,8 +32,8 @@ jest.mock('../api/adaptCurrentGameFromAPI', () => ({
 }));
 
 describe('Redux slice: gameSlice', () => {
-  const mockGamesData = createMockGamesData();
-  const mockCurrentGameData = createMockCurrentGameData();
+  const mockGamesData = createAdaptedMockGamesData();
+  const mockCurrentGameData = createAdaptedMockCurrentGameData();
 
   const initialState: initialStateType = {
     games: [],
