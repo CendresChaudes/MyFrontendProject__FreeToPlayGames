@@ -13,7 +13,7 @@ export default {
   },
   collectCoverageFrom: [
     '**/*.{ts,tsx}',
-    '!**/tests-lib/**',
+    '!**/tests/**',
     '!**/node_modules/**',
     '!**/vendor/**',
     '!**/index.{ts,tsx}',

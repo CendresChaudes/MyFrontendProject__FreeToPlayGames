@@ -1,1 +1,1 @@
-export { createAdaptedMockCurrentGameData } from './tests-lib/createAdaptedMockCurrentGameData';
+export { createAdaptedMockCurrentGameData } from './tests/lib/createAdaptedMockCurrentGameData';

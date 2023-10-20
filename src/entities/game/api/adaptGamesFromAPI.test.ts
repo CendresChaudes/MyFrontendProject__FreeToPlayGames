@@ -1,5 +1,5 @@
-import { createAdaptedMockGamesData } from '../tests-lib/createAdaptedMockGamesData';
-import { createSourceMockGamesData } from '../tests-lib/createSourceMockGamesData';
+import { createAdaptedMockGamesData } from '../tests/lib/createAdaptedMockGamesData';
+import { createSourceMockGamesData } from '../tests/lib/createSourceMockGamesData';
 import { adaptGamesFromAPI } from './adaptGamesFromAPI';
 
 describe('Function: adaptGamesFromAPI', () => {

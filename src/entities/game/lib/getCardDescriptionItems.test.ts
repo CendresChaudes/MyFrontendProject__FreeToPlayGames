@@ -1,8 +1,8 @@
-import { createAdaptedMockGamesData } from '../tests-lib/createAdaptedMockGamesData';
+import { createAdaptedMockGamesData } from '../tests/lib/createAdaptedMockGamesData';
 import { getCardDescriptionItems } from './getCardDescriptionItems';
 
 jest.mock('@/shared/lib', () => ({
-  isDataItemEmpty: <T>(item: T) => (!item || item === '?') ? 'N/A' : item
+  isDataItemEmpty: <T>(item: T) => item
 }));
 
 describe('Function: getCardDescriptionItems', () => {

@@ -1,10 +1,8 @@
-import { configureMockStore } from '@jedmao/redux-mock-store';
-import { Action, ThunkDispatch } from '@reduxjs/toolkit';
 import MockAdapter from 'axios-mock-adapter';
-import thunk from 'redux-thunk';
 import { createAPI } from '@/shared/api';
 import * as storageLibs from '@/shared/lib/storage';
-import { createAdaptedMockCurrentGameData } from '../tests-lib/createAdaptedMockCurrentGameData';
+import { createMockStore } from '@/shared/tests';
+import { createAdaptedMockCurrentGameData } from '../tests/lib/createAdaptedMockCurrentGameData';
 import { fetchCurrentGame } from './fetchCurrentGame';
 import { APIRoute } from '@/const';
 
@@ -14,14 +12,10 @@ jest.mock('./adaptCurrentGameFromAPI', () => ({
   adaptCurrentGameFromAPI: (item: GameAdaptedType) => item,
 }));
 
-type AppThunkDispatch = ThunkDispatch<State, ReturnType<typeof createAPI>, Action>;
-
 describe('Async action: fetchCurrentGame', () => {
   const api = createAPI();
   const mockAPIAdapter = new MockAdapter(api);
-  const middlewares = [thunk.withExtraArgument(api)];
-  const mockStoreCreator = configureMockStore<State, Action<string>, AppThunkDispatch>(middlewares);
-  const mockStore: ReturnType<typeof mockStoreCreator> = mockStoreCreator({ game: { games: [] } });
+  const mockStore = createMockStore({ game: { currentGame: null } }, api);
 
   const mockCurrentGameData = createAdaptedMockCurrentGameData();
   const mockParams: FetchCurrentGameData = { id: 1 };

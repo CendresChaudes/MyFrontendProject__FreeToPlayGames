@@ -2,8 +2,8 @@ import { APIStatus } from '@/shared/api/const';
 import { fetchCurrentGame } from '../api/fetchCurrentGame';
 import { fetchGames } from '../api/fetchGames';
 import { Platform, Genre, SortType, REFETCH_ATTEMPTS_COUNT } from '../const';
-import { createAdaptedMockCurrentGameData } from '../tests-lib/createAdaptedMockCurrentGameData';
-import { createAdaptedMockGamesData } from '../tests-lib/createAdaptedMockGamesData';
+import { createAdaptedMockCurrentGameData } from '../tests/lib/createAdaptedMockCurrentGameData';
+import { createAdaptedMockGamesData } from '../tests/lib/createAdaptedMockGamesData';
 import {
   gameSlice,
   changeCurrentPlatformFilter,
@@ -14,21 +14,12 @@ import {
   initialStateType,
 } from './gameSlice';
 
-jest.mock('@/shared/lib', () => ({
-  __esModule: true
-}));
-
-jest.mock('@/shared/api', () => ({
-  __esModule: true,
-  APIStatus
-}));
-
 jest.mock('../api/adaptGamesFromAPI', () => ({
-  adaptGamesFromAPI: () => null
+  adaptGamesFromAPI: <T>(item: T) => item
 }));
 
 jest.mock('../api/adaptCurrentGameFromAPI', () => ({
-  adaptCurrentGameFromAPI: () => null
+  adaptCurrentGameFromAPI: <T>(item: T) => item
 }));
 
 describe('Redux slice: gameSlice', () => {

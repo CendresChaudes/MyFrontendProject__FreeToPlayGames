@@ -1,2 +1,2 @@
-export { createAPI } from './axios/createApi';
+export { createAPI } from './axios/createAPI';
 export { APIStatus } from './const';

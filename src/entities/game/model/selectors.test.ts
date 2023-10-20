@@ -1,7 +1,7 @@
 import { APIStatus } from '@/shared/api/const';
 import { Platform, Genre, SortType } from '../const';
-import { createAdaptedMockCurrentGameData } from '../tests-lib/createAdaptedMockCurrentGameData';
-import { createAdaptedMockGamesData } from '../tests-lib/createAdaptedMockGamesData';
+import { createAdaptedMockCurrentGameData } from '../tests/lib/createAdaptedMockCurrentGameData';
+import { createAdaptedMockGamesData } from '../tests/lib/createAdaptedMockGamesData';
 import {
   getGames,
   getGamesStatus,
