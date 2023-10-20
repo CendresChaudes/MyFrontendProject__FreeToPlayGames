@@ -1,6 +1,6 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 export default {
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
   preset: 'ts-jest',
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
