@@ -13,6 +13,7 @@ import {
 } from '@/entities/game';
 import {
   getKeyByValue,
+  resetState,
   useAppDispatch,
   useAppSelector,
 } from '@/shared/lib';
@@ -31,16 +32,19 @@ export function SortFilterPanel() {
   const onDropdownPlatformFilterItemClick: MenuProps['onClick'] = ({ key }) => {
     const dropdownItem = platformItems.find((item) => item.key === key) as (typeof platformItems)[number];
     dispatch(changeCurrentPlatformFilter(Platform[dropdownItem.label]));
+    dispatch(resetState());
   };
 
   const onDropdownGenreFilterItemClick: MenuProps['onClick'] = ({ key }) => {
     const dropdownItem = genreItems.find((item) => item.key === key) as (typeof genreItems)[number];
     dispatch(changeCurrentGenreFilter(Genre[dropdownItem.label]));
+    dispatch(resetState());
   };
 
   const onDropdownSortTypeItemClick: MenuProps['onClick'] = ({ key }) => {
     const dropdownItem = sortItems.find((item) => item.key === key) as (typeof sortItems)[number];
     dispatch(changeCurrentSortType(SortType[dropdownItem.label]));
+    dispatch(resetState());
   };
 
   return (

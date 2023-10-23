@@ -13,5 +13,7 @@ export const getCurrentSortType = (state: State) => state.game.currentSortType;
 export const getGamesRefetchAttemptsCount = (state: State) => state.game.gamesRefetchAttemptsCount;
 export const getCurrentGameRefetchAttemptsCount = (state: State) => state.game.currentGameRefetchAttemptsCount;
 
+export const getCurrentPageNumber = (state: State) => state.game.currentPageNumber;
+
 export const getGamesStatusObj = createStatusObj(getGamesStatus);
 export const getCurrentGameStatusObj = createStatusObj(getCurrentGameStatus);

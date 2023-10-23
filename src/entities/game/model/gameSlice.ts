@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { APIStatus } from '@/shared/api';
+import { resetState } from '@/shared/lib';
 import { fetchCurrentGame } from '../api/fetchCurrentGame';
 import { fetchGames } from '../api/fetchGames';
 import { Platform, Genre, SortType, REFETCH_ATTEMPTS_COUNT } from '../const';
@@ -14,6 +15,7 @@ type initialStateType = {
   currentSortType: SortType;
   gamesRefetchAttemptsCount: number;
   currentGameRefetchAttemptsCount: number;
+  currentPageNumber: number;
 };
 
 const initialState: initialStateType = {
@@ -26,6 +28,7 @@ const initialState: initialStateType = {
   currentSortType: SortType.Relevance,
   gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
   currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+  currentPageNumber: 1
 };
 
 export const gameSlice = createSlice({
@@ -46,10 +49,16 @@ export const gameSlice = createSlice({
     },
     decrementCurrentGameRefetchAttemptsCount(state) {
       state.currentGameRefetchAttemptsCount = state.currentGameRefetchAttemptsCount - 1;
-    }
+    },
+    changeCurrentPageNumber(state, action: PayloadAction<number>) {
+      state.currentPageNumber = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
+      .addCase(resetState, (state) => {
+        state.currentPageNumber = 1;
+      })
       .addCase(fetchGames.pending, (state) => {
         state.gamesStatus = APIStatus.Pending;
       })
@@ -82,6 +91,7 @@ export const {
   changeCurrentSortType,
   decrementGamesRefetchAttemptsCount,
   decrementCurrentGameRefetchAttemptsCount,
+  changeCurrentPageNumber
 } = gameSlice.actions;
 
 export type { initialStateType };

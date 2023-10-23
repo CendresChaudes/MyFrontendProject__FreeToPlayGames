@@ -1,20 +1,26 @@
 import { Col, Pagination, Row } from 'antd';
 import { useState } from 'react';
-import { getGames, getGamesStatusObj } from '@/entities/game';
-import { Card } from '@/entities/game';
-import { useBreakpoint } from '@/shared/lib';
-import { useAppSelector } from '@/shared/lib';
+import {
+  getGames,
+  getGamesStatusObj,
+  Card,
+  getCurrentPageNumber,
+  changeCurrentPageNumber,
+} from '@/entities/game';
+import { useBreakpoint, useAppSelector, useAppDispatch } from '@/shared/lib';
 import { Loader } from '@/shared/ui';
 import { GamesListRejected } from './GamesListRejected';
 import styles from './styles.module.css';
 
 export function GamesList() {
-  const [pageNumber, setPageNumber] = useState(1);
+  const dispatch = useAppDispatch();
+  const currentBreakpoint = useBreakpoint();
+
   const [pageSize, setPageSize] = useState(10);
 
-  const currentBreakpoint = useBreakpoint();
   const games = useAppSelector(getGames);
   const gamesStatus = useAppSelector(getGamesStatusObj);
+  const currentPageNumber = useAppSelector(getCurrentPageNumber);
 
   if (gamesStatus.isUncompleted) {
     return <Loader text="Loading games..." fullPage={false} />;
@@ -28,7 +34,10 @@ export function GamesList() {
     <>
       <Row gutter={[25, 25]}>
         {games
-          .slice((pageNumber - 1) * pageSize, pageNumber * pageSize)
+          .slice(
+            (currentPageNumber - 1) * pageSize,
+            currentPageNumber * pageSize
+          )
           .map((game) => (
             <Col
               key={String(game.id)}
@@ -46,12 +55,15 @@ export function GamesList() {
       <Pagination
         className={styles.pagination}
         total={games.length}
-        showTotal={(total, range) => currentBreakpoint !== 'xs' ? `${range[0]}-${range[1]} of ${total} items` : ''}
-        current={pageNumber}
+        showTotal={(total, range) =>
+          currentBreakpoint !== 'xs'
+            ? `${range[0]}-${range[1]} of ${total} items`
+            : ''}
+        current={currentPageNumber}
         pageSize={pageSize}
         showLessItems={currentBreakpoint === 'xs'}
         onChange={(page, size) => {
-          setPageNumber(page);
+          dispatch(changeCurrentPageNumber(page));
           setPageSize(size);
           window.scrollTo(0, 0);
         }}
