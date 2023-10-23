@@ -12,6 +12,7 @@ import {
   getCurrentSortType,
   getGamesRefetchAttemptsCount,
   getCurrentGameRefetchAttemptsCount,
+  getCurrentPageNumber
 } from './selectors';
 
 jest.mock('@/shared/lib', () => ({
@@ -33,6 +34,7 @@ describe('Redux selectors: "game" domain', () => {
       currentSortType: SortType.Relevance,
       gamesRefetchAttemptsCount: 3,
       currentGameRefetchAttemptsCount: 5,
+      currentPageNumber: 1
     },
   };
 
@@ -130,6 +132,17 @@ describe('Redux selectors: "game" domain', () => {
 
       const result = getCurrentGameRefetchAttemptsCount(mockStore);
       const expectedResult = currentGameRefetchAttemptsCount;
+
+      expect(result).toBe(expectedResult);
+    });
+  });
+
+  describe('Selector: getCurrentPageNumber', () => {
+    test('Should return a current page number', () => {
+      const { currentPageNumber } = mockStore.game;
+
+      const result = getCurrentPageNumber(mockStore);
+      const expectedResult = currentPageNumber;
 
       expect(result).toBe(expectedResult);
     });

@@ -1,4 +1,5 @@
-import { APIStatus } from '@/shared/api/const';
+import { APIStatus } from '@/shared/api';
+import { resetState } from '@/shared/lib';
 import { fetchCurrentGame } from '../api/fetchCurrentGame';
 import { fetchGames } from '../api/fetchGames';
 import { Platform, Genre, SortType, REFETCH_ATTEMPTS_COUNT } from '../const';
@@ -12,6 +13,7 @@ import {
   decrementGamesRefetchAttemptsCount,
   decrementCurrentGameRefetchAttemptsCount,
   initialStateType,
+  changeCurrentPageNumber,
 } from './gameSlice';
 
 jest.mock('../api/adaptGamesFromAPI', () => ({
@@ -36,6 +38,7 @@ describe('Redux slice: gameSlice', () => {
     currentSortType: SortType.Relevance,
     gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
     currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+    currentPageNumber: 1,
   };
 
   describe('Reducer: changeCurrentPlatformFilter', () => {
@@ -52,6 +55,7 @@ describe('Redux slice: gameSlice', () => {
         currentSortType: SortType.Relevance,
         gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
         currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+        currentPageNumber: 1,
       };
 
       const result = gameSlice.reducer(initialState, changeCurrentPlatformFilter(platformFilter));
@@ -74,6 +78,7 @@ describe('Redux slice: gameSlice', () => {
         currentSortType: SortType.Relevance,
         gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
         currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+        currentPageNumber: 1,
       };
 
       const result = gameSlice.reducer(initialState, changeCurrentGenreFilter(genreFilter));
@@ -96,6 +101,7 @@ describe('Redux slice: gameSlice', () => {
         currentSortType: SortType.Alphabetical,
         gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
         currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+        currentPageNumber: 1,
       };
 
       const result = gameSlice.reducer(initialState, changeCurrentSortType(sortType));
@@ -116,6 +122,7 @@ describe('Redux slice: gameSlice', () => {
         currentSortType: SortType.Relevance,
         gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT - 1,
         currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+        currentPageNumber: 1,
       };
 
       const result = gameSlice.reducer(initialState, decrementGamesRefetchAttemptsCount);
@@ -136,9 +143,67 @@ describe('Redux slice: gameSlice', () => {
         currentSortType: SortType.Relevance,
         gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
         currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT - 1,
+        currentPageNumber: 1,
       };
 
       const result = gameSlice.reducer(initialState, decrementCurrentGameRefetchAttemptsCount);
+
+      expect(result).toEqual(expectedResult);
+    });
+  });
+
+  describe('Reducer: changeCurrentPageNumber', () => {
+    test('Should change a page number', () => {
+      const newCurrentPageNumber = 4;
+
+      const expectedResult = {
+        games: [],
+        gamesStatus: APIStatus.Idle,
+        currentGame: null,
+        currentGameStatus: APIStatus.Idle,
+        currentPlatformFilter: Platform.All,
+        currentGenreFilter: Genre.All,
+        currentSortType: SortType.Relevance,
+        gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+        currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+        currentPageNumber: newCurrentPageNumber,
+      };
+
+      const result = gameSlice.reducer(initialState, changeCurrentPageNumber(newCurrentPageNumber));
+
+      expect(result).toEqual(expectedResult);
+    });
+  });
+
+  describe('Extra reducer: resetState', () => {
+    test('Should set "currentPageNumber" to 1', () => {
+      const stateBeforeReset = {
+        games: [],
+        gamesStatus: APIStatus.Idle,
+        currentGame: null,
+        currentGameStatus: APIStatus.Idle,
+        currentPlatformFilter: Platform.All,
+        currentGenreFilter: Genre.All,
+        currentSortType: SortType.Relevance,
+        gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+        currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+        currentPageNumber: 4,
+      };
+
+      const expectedResult = {
+        games: [],
+        gamesStatus: APIStatus.Idle,
+        currentGame: null,
+        currentGameStatus: APIStatus.Idle,
+        currentPlatformFilter: Platform.All,
+        currentGenreFilter: Genre.All,
+        currentSortType: SortType.Relevance,
+        gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+        currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+        currentPageNumber: 1,
+      };
+
+      const result = gameSlice.reducer(stateBeforeReset, resetState);
 
       expect(result).toEqual(expectedResult);
     });
@@ -156,6 +221,7 @@ describe('Redux slice: gameSlice', () => {
         currentSortType: SortType.Relevance,
         gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
         currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+        currentPageNumber: 1,
       };
 
       const result = gameSlice.reducer(initialState, fetchGames.pending);
@@ -175,6 +241,7 @@ describe('Redux slice: gameSlice', () => {
         currentSortType: SortType.Relevance,
         gamesRefetchAttemptsCount: 1,
         currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+        currentPageNumber: 1,
       };
 
       const mockParams: FetchGamesType = {
@@ -195,6 +262,7 @@ describe('Redux slice: gameSlice', () => {
         currentSortType: SortType.Relevance,
         gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
         currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+        currentPageNumber: 1,
       };
 
       const result = gameSlice.reducer(stateBeforeFulfilled, fetchGames.fulfilled(mockGames, '', mockParams));
@@ -213,6 +281,7 @@ describe('Redux slice: gameSlice', () => {
         currentSortType: SortType.Relevance,
         gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
         currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+        currentPageNumber: 1,
       };
 
       const result = gameSlice.reducer(initialState, fetchGames.rejected);
@@ -233,6 +302,7 @@ describe('Redux slice: gameSlice', () => {
         currentSortType: SortType.Relevance,
         gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
         currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+        currentPageNumber: 1,
       };
 
       const result = gameSlice.reducer(initialState, fetchCurrentGame.pending);
@@ -252,6 +322,7 @@ describe('Redux slice: gameSlice', () => {
         currentSortType: SortType.Relevance,
         gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
         currentGameRefetchAttemptsCount: 1,
+        currentPageNumber: 1,
       };
 
       const mockParams: FetchCurrentGameType = { id: 1 };
@@ -266,6 +337,7 @@ describe('Redux slice: gameSlice', () => {
         currentSortType: SortType.Relevance,
         gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
         currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+        currentPageNumber: 1,
       };
 
       const result = gameSlice.reducer(stateBeforeFulfilled, fetchCurrentGame.fulfilled(mockCurrentGame, '', mockParams));
@@ -284,6 +356,7 @@ describe('Redux slice: gameSlice', () => {
         currentSortType: SortType.Relevance,
         gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
         currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+        currentPageNumber: 1,
       };
 
       const expectedResult = {
@@ -296,6 +369,7 @@ describe('Redux slice: gameSlice', () => {
         currentSortType: SortType.Relevance,
         gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
         currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+        currentPageNumber: 1,
       };
 
       const result = gameSlice.reducer(stateBeforeRejected, fetchCurrentGame.rejected);
