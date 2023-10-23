@@ -34,6 +34,10 @@ body {
   padding: 0;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 img {
   object-fit: cover;
 }
