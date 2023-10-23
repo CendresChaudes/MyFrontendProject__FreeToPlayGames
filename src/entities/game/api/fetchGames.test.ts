@@ -1,5 +1,5 @@
 import MockAdapter from 'axios-mock-adapter';
-import { createAPI } from '@/shared/api';
+import { createApi } from '@/shared/api';
 import { createMockStore } from '@/shared/tests';
 import { Platform, Genre, SortType } from '../const';
 import { createAdaptedMockGames } from '../tests/lib/createAdaptedMockGames';
@@ -11,7 +11,7 @@ jest.mock('./adaptGamesFromAPI', () => ({
 }));
 
 describe('Async action: fetchGames', () => {
-  const api = createAPI();
+  const api = createApi();
   const mockAPIAdapter = new MockAdapter(api);
   const mockStore = createMockStore({ game: { games: [] } }, api);
 

@@ -2,9 +2,9 @@ import { configureMockStore } from '@jedmao/redux-mock-store';
 import { Action, ThunkDispatch } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import thunk from 'redux-thunk';
-import { createAPI } from '../../api';
+import { createApi } from '../../api';
 
-type AppThunkDispatch = ThunkDispatch<State, ReturnType<typeof createAPI>, Action>;
+type AppThunkDispatch = ThunkDispatch<State, ReturnType<typeof createApi>, Action>;
 
 export const createMockStore = <T extends object>(data: T, api: AxiosInstance) => {
   const middlewares = [thunk.withExtraArgument(api)];
