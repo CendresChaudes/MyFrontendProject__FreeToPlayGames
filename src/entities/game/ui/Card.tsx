@@ -18,6 +18,7 @@ export function Card({ game }: CardProps) {
     <Link
       className={styles.link}
       to={generatePath(AppRoute.Game, { id: game.id.toString() })}
+      data-testid='card-link'
     >
       <_Card
         className={styles.card}
