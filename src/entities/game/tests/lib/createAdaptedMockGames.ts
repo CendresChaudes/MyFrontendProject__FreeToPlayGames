@@ -1,4 +1,4 @@
-export const createAdaptedMockGamesData = (): GamesAdaptedType[] => ([
+export const createAdaptedMockGames = (): GamesAdaptedType[] => ([
   {
     id: 540,
     title: 'Overwatch 2',

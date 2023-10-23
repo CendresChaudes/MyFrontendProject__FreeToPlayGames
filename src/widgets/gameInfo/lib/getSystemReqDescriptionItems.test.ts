@@ -1,4 +1,4 @@
-import { createAdaptedMockCurrentGameData } from '@/entities/game/tests-index';
+import { createAdaptedMockCurrentGame } from '@/entities/game/tests-index';
 import { getSystemReqDescriptionItems } from './getSystemReqDescriptionItems';
 
 jest.mock('@/shared/lib', () => ({
@@ -7,38 +7,38 @@ jest.mock('@/shared/lib', () => ({
 
 describe('Function: getSystemReqDescriptionItems', () => {
   test('Should return an array of description items', () => {
-    const mockCurrentGameData = createAdaptedMockCurrentGameData();
+    const mockCurrentGame = createAdaptedMockCurrentGame();
 
     const expectedResult = [
       {
         key: '1',
         label: 'OS',
-        children: mockCurrentGameData.minimumSystemRequirements.os,
+        children: mockCurrentGame.minimumSystemRequirements.os,
       },
       {
         key: '2',
         label: 'Processor',
-        children: mockCurrentGameData.minimumSystemRequirements.processor,
+        children: mockCurrentGame.minimumSystemRequirements.processor,
       },
       {
         key: '3',
         label: 'Memory',
-        children: mockCurrentGameData.minimumSystemRequirements.memory,
+        children: mockCurrentGame.minimumSystemRequirements.memory,
       },
       {
         key: '4',
         label: 'Graphics',
-        children: mockCurrentGameData.minimumSystemRequirements.graphics,
+        children: mockCurrentGame.minimumSystemRequirements.graphics,
       },
       {
         key: '5',
         label: 'Storage',
-        children: mockCurrentGameData.minimumSystemRequirements.storage,
+        children: mockCurrentGame.minimumSystemRequirements.storage,
       },
     ];
 
 
-    const result = getSystemReqDescriptionItems(mockCurrentGameData);
+    const result = getSystemReqDescriptionItems(mockCurrentGame);
 
     expect(result).toEqual(expectedResult);
   });

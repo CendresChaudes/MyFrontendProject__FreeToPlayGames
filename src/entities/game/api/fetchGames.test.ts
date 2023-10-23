@@ -2,7 +2,7 @@ import MockAdapter from 'axios-mock-adapter';
 import { createAPI } from '@/shared/api';
 import { createMockStore } from '@/shared/tests';
 import { Platform, Genre, SortType } from '../const';
-import { createAdaptedMockGamesData } from '../tests/lib/createAdaptedMockGamesData';
+import { createAdaptedMockGames } from '../tests/lib/createAdaptedMockGames';
 import { fetchGames } from './fetchGames';
 import { APIRoute } from '@/const';
 
@@ -16,7 +16,7 @@ describe('Async action: fetchGames', () => {
   const mockStore = createMockStore({ game: { games: [] } }, api);
 
   test('Should return an array of games data', async () => {
-    const mockGamesData = createAdaptedMockGamesData();
+    const mockGames = createAdaptedMockGames();
 
     const mockParams: FetchGamesData = {
       params: {
@@ -26,10 +26,10 @@ describe('Async action: fetchGames', () => {
       },
     };
 
-    mockAPIAdapter.onGet(APIRoute.Games).reply(200, mockGamesData);
+    mockAPIAdapter.onGet(APIRoute.Games).reply(200, mockGames);
 
     const gamesFetchData = await mockStore.dispatch(fetchGames(mockParams));
 
-    expect(gamesFetchData.payload).toEqual(mockGamesData);
+    expect(gamesFetchData.payload).toEqual(mockGames);
   });
 });

@@ -1,4 +1,4 @@
-import { createAdaptedMockGamesData } from '../tests/lib/createAdaptedMockGamesData';
+import { createAdaptedMockGames } from '../tests/lib/createAdaptedMockGames';
 import { getCardDescriptionItems } from './getCardDescriptionItems';
 
 jest.mock('@/shared/lib', () => ({
@@ -7,27 +7,27 @@ jest.mock('@/shared/lib', () => ({
 
 describe('Function: getCardDescriptionItems', () => {
   test('Should return an array of description items', () => {
-    const mockDataFromGamesArray = createAdaptedMockGamesData()[0];
+    const mockGame = createAdaptedMockGames()[0];
 
     const expectedResult = [
       {
         key: '1',
         label: 'Genre',
-        children: mockDataFromGamesArray.genre,
+        children: mockGame.genre,
       },
       {
         key: '2',
         label: 'Publisher',
-        children: mockDataFromGamesArray.publisher,
+        children: mockGame.publisher,
       },
       {
         key: '3',
         label: 'Release Date',
-        children: mockDataFromGamesArray.releaseDate,
+        children: mockGame.releaseDate,
       },
     ];
 
-    const result = getCardDescriptionItems(mockDataFromGamesArray);
+    const result = getCardDescriptionItems(mockGame);
 
     expect(result).toEqual(expectedResult);
   });

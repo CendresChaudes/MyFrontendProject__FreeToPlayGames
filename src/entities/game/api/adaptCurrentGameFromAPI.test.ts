@@ -1,11 +1,11 @@
-import { createAdaptedMockCurrentGameData } from '../tests/lib/createAdaptedMockCurrentGameData';
-import { createSourceMockCurrentGameData } from '../tests/lib/createSourceMockCurrentGameData';
+import { createAdaptedMockCurrentGame } from '../tests/lib/createAdaptedMockCurrentGame';
+import { createSourceMockCurrentGame } from '../tests/lib/createSourceMockCurrentGame';
 import { adaptCurrentGameFromAPI } from './adaptCurrentGameFromAPI';
 
 describe('Function: adaptCurrentGameFromAPI', () => {
   test('Should return adapted games data', () => {
-    const sourceData = createSourceMockCurrentGameData();
-    const adaptedData = createAdaptedMockCurrentGameData();
+    const sourceData = createSourceMockCurrentGame();
+    const adaptedData = createAdaptedMockCurrentGame();
     const expectedResult = adaptedData;
 
     const result = adaptCurrentGameFromAPI(sourceData);

@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-export const createSourceMockGamesData = (): GamesSourceType[] => ([
+export const createSourceMockGames = (): GamesSourceType[] => ([
   {
     id: 540,
     title: 'Overwatch 2',

@@ -2,7 +2,7 @@ import MockAdapter from 'axios-mock-adapter';
 import { createAPI } from '@/shared/api';
 import * as storageLibs from '@/shared/lib/storage';
 import { createMockStore } from '@/shared/tests';
-import { createAdaptedMockCurrentGameData } from '../tests/lib/createAdaptedMockCurrentGameData';
+import { createAdaptedMockCurrentGame } from '../tests/lib/createAdaptedMockCurrentGame';
 import { fetchCurrentGame } from './fetchCurrentGame';
 import { APIRoute } from '@/const';
 
@@ -17,16 +17,16 @@ describe('Async action: fetchCurrentGame', () => {
   const mockAPIAdapter = new MockAdapter(api);
   const mockStore = createMockStore({ game: { currentGame: null } }, api);
 
-  const mockCurrentGameData = createAdaptedMockCurrentGameData();
+  const mockCurrentGame = createAdaptedMockCurrentGame();
   const mockParams: FetchCurrentGameData = { id: 1 };
 
   const mockExpiredCacheData = {
-    data: mockCurrentGameData,
+    data: mockCurrentGame,
     cacheExpireTime: Date.now() - 10000000,
   };
 
   const mockNotExpiredCacheData = {
-    data: mockCurrentGameData,
+    data: mockCurrentGame,
     cacheExpireTime: Date.now() + 10000000,
   };
 
@@ -43,36 +43,36 @@ describe('Async action: fetchCurrentGame', () => {
 
   test('Should return a current game data from fetch if an item does not exist', async () => {
     getItemFromCache.mockReturnValue(undefined);
-    mockAPIAdapter.onGet(APIRoute.Game).reply(200, mockCurrentGameData);
+    mockAPIAdapter.onGet(APIRoute.Game).reply(200, mockCurrentGame);
 
     const currentGameFetchData = await mockStore.dispatch(fetchCurrentGame(mockParams));
 
-    expect(currentGameFetchData.payload).toEqual(mockCurrentGameData);
+    expect(currentGameFetchData.payload).toEqual(mockCurrentGame);
     expect(mockAPIAdapter.history.get.length).toBe(1);
   });
 
   test('Should return a current game data from fetch if an item exists and cache time has expired', async () => {
     getItemFromCache.mockReturnValue(mockExpiredCacheData);
-    mockAPIAdapter.onGet(APIRoute.Game).reply(200, mockCurrentGameData);
+    mockAPIAdapter.onGet(APIRoute.Game).reply(200, mockCurrentGame);
 
     const currentGameFetchData = await mockStore.dispatch(fetchCurrentGame(mockParams));
 
-    expect(currentGameFetchData.payload).toEqual(mockCurrentGameData);
+    expect(currentGameFetchData.payload).toEqual(mockCurrentGame);
     expect(mockAPIAdapter.history.get.length).toBe(1);
   });
 
   test('Should return a current game data from cache if an item exists and cache time has not expired', async () => {
     getItemFromCache.mockReturnValue(mockNotExpiredCacheData);
-    mockAPIAdapter.onGet(APIRoute.Game).reply(200, mockCurrentGameData);
+    mockAPIAdapter.onGet(APIRoute.Game).reply(200, mockCurrentGame);
 
     const currentGameFetchData = await mockStore.dispatch(fetchCurrentGame(mockParams));
 
-    expect(currentGameFetchData.payload).toEqual(mockCurrentGameData);
+    expect(currentGameFetchData.payload).toEqual(mockCurrentGame);
     expect(mockAPIAdapter.history.get.length).toBe(0);
   });
 
   test('should call "getItemFromCache" once', async () => {
-    mockAPIAdapter.onGet(APIRoute.Game).reply(200, mockCurrentGameData);
+    mockAPIAdapter.onGet(APIRoute.Game).reply(200, mockCurrentGame);
 
     await mockStore.dispatch(fetchCurrentGame(mockParams));
 
@@ -81,7 +81,7 @@ describe('Async action: fetchCurrentGame', () => {
 
   test('should not call "removeItemFromCache" if an item does not exist', async () => {
     getItemFromCache.mockReturnValue(undefined);
-    mockAPIAdapter.onGet(APIRoute.Game).reply(200, mockCurrentGameData);
+    mockAPIAdapter.onGet(APIRoute.Game).reply(200, mockCurrentGame);
 
     await mockStore.dispatch(fetchCurrentGame(mockParams));
 
@@ -90,7 +90,7 @@ describe('Async action: fetchCurrentGame', () => {
 
   test('should not call "removeItemFromCache" if an item exists and cache time has not expired', async () => {
     getItemFromCache.mockReturnValue(mockNotExpiredCacheData);
-    mockAPIAdapter.onGet(APIRoute.Game).reply(200, mockCurrentGameData);
+    mockAPIAdapter.onGet(APIRoute.Game).reply(200, mockCurrentGame);
 
     await mockStore.dispatch(fetchCurrentGame(mockParams));
 
@@ -99,7 +99,7 @@ describe('Async action: fetchCurrentGame', () => {
 
   test('should call "removeItemFromCache" once if an item exists and cache time has expired', async () => {
     getItemFromCache.mockReturnValue(mockExpiredCacheData);
-    mockAPIAdapter.onGet(APIRoute.Game).reply(200, mockCurrentGameData);
+    mockAPIAdapter.onGet(APIRoute.Game).reply(200, mockCurrentGame);
 
     await mockStore.dispatch(fetchCurrentGame(mockParams));
 
@@ -108,7 +108,7 @@ describe('Async action: fetchCurrentGame', () => {
 
   test('should call "setItemToCache" once if an item does not exist', async () => {
     getItemFromCache.mockReturnValue(undefined);
-    mockAPIAdapter.onGet(APIRoute.Game).reply(200, mockCurrentGameData);
+    mockAPIAdapter.onGet(APIRoute.Game).reply(200, mockCurrentGame);
 
     await mockStore.dispatch(fetchCurrentGame(mockParams));
 
@@ -117,7 +117,7 @@ describe('Async action: fetchCurrentGame', () => {
 
   test('should call "setItemToCache" once if an item exists and cache time has expired', async () => {
     getItemFromCache.mockReturnValue(mockExpiredCacheData);
-    mockAPIAdapter.onGet(APIRoute.Game).reply(200, mockCurrentGameData);
+    mockAPIAdapter.onGet(APIRoute.Game).reply(200, mockCurrentGame);
 
     await mockStore.dispatch(fetchCurrentGame(mockParams));
 
@@ -126,7 +126,7 @@ describe('Async action: fetchCurrentGame', () => {
 
   test('should not call "setItemToCache" if an item exists and cache time has not expired', async () => {
     getItemFromCache.mockReturnValue(mockNotExpiredCacheData);
-    mockAPIAdapter.onGet(APIRoute.Game).reply(200, mockCurrentGameData);
+    mockAPIAdapter.onGet(APIRoute.Game).reply(200, mockCurrentGame);
 
     await mockStore.dispatch(fetchCurrentGame(mockParams));
 

@@ -2,8 +2,8 @@ import { APIStatus } from '@/shared/api/const';
 import { fetchCurrentGame } from '../api/fetchCurrentGame';
 import { fetchGames } from '../api/fetchGames';
 import { Platform, Genre, SortType, REFETCH_ATTEMPTS_COUNT } from '../const';
-import { createAdaptedMockCurrentGameData } from '../tests/lib/createAdaptedMockCurrentGameData';
-import { createAdaptedMockGamesData } from '../tests/lib/createAdaptedMockGamesData';
+import { createAdaptedMockCurrentGame } from '../tests/lib/createAdaptedMockCurrentGame';
+import { createAdaptedMockGames } from '../tests/lib/createAdaptedMockGames';
 import {
   gameSlice,
   changeCurrentPlatformFilter,
@@ -23,8 +23,8 @@ jest.mock('../api/adaptCurrentGameFromAPI', () => ({
 }));
 
 describe('Redux slice: gameSlice', () => {
-  const mockGamesData = createAdaptedMockGamesData();
-  const mockCurrentGameData = createAdaptedMockCurrentGameData();
+  const mockGames = createAdaptedMockGames();
+  const mockCurrentGame = createAdaptedMockCurrentGame();
 
   const initialState: initialStateType = {
     games: [],
@@ -186,7 +186,7 @@ describe('Redux slice: gameSlice', () => {
       };
 
       const expectedResult = {
-        games: mockGamesData,
+        games: mockGames,
         gamesStatus: APIStatus.Fulfilled,
         currentGame: null,
         currentGameStatus: APIStatus.Idle,
@@ -197,7 +197,7 @@ describe('Redux slice: gameSlice', () => {
         currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
       };
 
-      const result = gameSlice.reducer(stateBeforeFulfilled, fetchGames.fulfilled(mockGamesData, '', mockParams));
+      const result = gameSlice.reducer(stateBeforeFulfilled, fetchGames.fulfilled(mockGames, '', mockParams));
 
       expect(result).toEqual(expectedResult);
     });
@@ -259,7 +259,7 @@ describe('Redux slice: gameSlice', () => {
       const expectedResult = {
         games: [],
         gamesStatus: APIStatus.Idle,
-        currentGame: mockCurrentGameData,
+        currentGame: mockCurrentGame,
         currentGameStatus: APIStatus.Fulfilled,
         currentPlatformFilter: Platform.All,
         currentGenreFilter: Genre.All,
@@ -268,7 +268,7 @@ describe('Redux slice: gameSlice', () => {
         currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
       };
 
-      const result = gameSlice.reducer(stateBeforeFulfilled, fetchCurrentGame.fulfilled(mockCurrentGameData, '', mockParams));
+      const result = gameSlice.reducer(stateBeforeFulfilled, fetchCurrentGame.fulfilled(mockCurrentGame, '', mockParams));
 
       expect(result).toEqual(expectedResult);
     });
@@ -277,7 +277,7 @@ describe('Redux slice: gameSlice', () => {
       const stateBeforeRejected = {
         games: [],
         gamesStatus: APIStatus.Idle,
-        currentGame: mockCurrentGameData,
+        currentGame: mockCurrentGame,
         currentGameStatus: APIStatus.Rejected,
         currentPlatformFilter: Platform.All,
         currentGenreFilter: Genre.All,
