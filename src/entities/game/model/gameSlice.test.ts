@@ -43,22 +43,14 @@ describe('Redux slice: gameSlice', () => {
 
   describe('Reducer: changeCurrentPlatformFilter', () => {
     test('Should change a current platform filter', () => {
-      const platformFilter = Platform.Browser;
+      const newCurrentPlatformFilter = Platform.Browser;
 
       const expectedResult = {
-        games: [],
-        gamesStatus: APIStatus.Idle,
-        currentGame: null,
-        currentGameStatus: APIStatus.Idle,
-        currentPlatformFilter: Platform.Browser,
-        currentGenreFilter: Genre.All,
-        currentSortType: SortType.Relevance,
-        gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentPageNumber: 1,
+        ...initialState,
+        currentPlatformFilter: newCurrentPlatformFilter,
       };
 
-      const result = gameSlice.reducer(initialState, changeCurrentPlatformFilter(platformFilter));
+      const result = gameSlice.reducer(initialState, changeCurrentPlatformFilter(newCurrentPlatformFilter));
 
       expect(result).toEqual(expectedResult);
     });
@@ -66,22 +58,14 @@ describe('Redux slice: gameSlice', () => {
 
   describe('Reducer: changeCurrentGenreFilter', () => {
     test('Should change a current genre filter', () => {
-      const genreFilter = Genre.MMORPG;
+      const newCurrentGenreFilter = Genre.MMORPG;
 
       const expectedResult = {
-        games: [],
-        gamesStatus: APIStatus.Idle,
-        currentGame: null,
-        currentGameStatus: APIStatus.Idle,
-        currentPlatformFilter: Platform.All,
-        currentGenreFilter: Genre.MMORPG,
-        currentSortType: SortType.Relevance,
-        gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentPageNumber: 1,
+        ...initialState,
+        currentGenreFilter: newCurrentGenreFilter,
       };
 
-      const result = gameSlice.reducer(initialState, changeCurrentGenreFilter(genreFilter));
+      const result = gameSlice.reducer(initialState, changeCurrentGenreFilter(newCurrentGenreFilter));
 
       expect(result).toEqual(expectedResult);
     });
@@ -89,22 +73,14 @@ describe('Redux slice: gameSlice', () => {
 
   describe('Reducer: changeCurrentSortType', () => {
     test('Should change a current sort type', () => {
-      const sortType = SortType.Alphabetical;
+      const newCurrentSortType = SortType.Alphabetical;
 
       const expectedResult = {
-        games: [],
-        gamesStatus: APIStatus.Idle,
-        currentGame: null,
-        currentGameStatus: APIStatus.Idle,
-        currentPlatformFilter: Platform.All,
-        currentGenreFilter: Genre.All,
-        currentSortType: SortType.Alphabetical,
-        gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentPageNumber: 1,
+        ...initialState,
+        currentSortType: newCurrentSortType,
       };
 
-      const result = gameSlice.reducer(initialState, changeCurrentSortType(sortType));
+      const result = gameSlice.reducer(initialState, changeCurrentSortType(newCurrentSortType));
 
       expect(result).toEqual(expectedResult);
     });
@@ -113,16 +89,8 @@ describe('Redux slice: gameSlice', () => {
   describe('Reducer: decrementGamesRefetchAttemptsCount', () => {
     test('Should decrement games refetch attempts count by one', () => {
       const expectedResult = {
-        games: [],
-        gamesStatus: APIStatus.Idle,
-        currentGame: null,
-        currentGameStatus: APIStatus.Idle,
-        currentPlatformFilter: Platform.All,
-        currentGenreFilter: Genre.All,
-        currentSortType: SortType.Relevance,
+        ...initialState,
         gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT - 1,
-        currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentPageNumber: 1,
       };
 
       const result = gameSlice.reducer(initialState, decrementGamesRefetchAttemptsCount);
@@ -134,16 +102,8 @@ describe('Redux slice: gameSlice', () => {
   describe('Reducer: decrementCurrentGameRefetchAttemptsCount', () => {
     test('Should decrement games refetch attempts count by one', () => {
       const expectedResult = {
-        games: [],
-        gamesStatus: APIStatus.Idle,
-        currentGame: null,
-        currentGameStatus: APIStatus.Idle,
-        currentPlatformFilter: Platform.All,
-        currentGenreFilter: Genre.All,
-        currentSortType: SortType.Relevance,
-        gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+        ...initialState,
         currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT - 1,
-        currentPageNumber: 1,
       };
 
       const result = gameSlice.reducer(initialState, decrementCurrentGameRefetchAttemptsCount);
@@ -157,15 +117,7 @@ describe('Redux slice: gameSlice', () => {
       const newCurrentPageNumber = 4;
 
       const expectedResult = {
-        games: [],
-        gamesStatus: APIStatus.Idle,
-        currentGame: null,
-        currentGameStatus: APIStatus.Idle,
-        currentPlatformFilter: Platform.All,
-        currentGenreFilter: Genre.All,
-        currentSortType: SortType.Relevance,
-        gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+        ...initialState,
         currentPageNumber: newCurrentPageNumber,
       };
 
@@ -178,28 +130,12 @@ describe('Redux slice: gameSlice', () => {
   describe('Extra reducer: resetState', () => {
     test('Should set "currentPageNumber" to 1', () => {
       const stateBeforeReset = {
-        games: [],
-        gamesStatus: APIStatus.Idle,
-        currentGame: null,
-        currentGameStatus: APIStatus.Idle,
-        currentPlatformFilter: Platform.All,
-        currentGenreFilter: Genre.All,
-        currentSortType: SortType.Relevance,
-        gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentPageNumber: 4,
+        ...initialState,
+        currentPageNumber: 3,
       };
 
       const expectedResult = {
-        games: [],
-        gamesStatus: APIStatus.Idle,
-        currentGame: null,
-        currentGameStatus: APIStatus.Idle,
-        currentPlatformFilter: Platform.All,
-        currentGenreFilter: Genre.All,
-        currentSortType: SortType.Relevance,
-        gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
+        ...initialState,
         currentPageNumber: 1,
       };
 
@@ -212,16 +148,8 @@ describe('Redux slice: gameSlice', () => {
   describe('Extra reducer: fetchGames', () => {
     test('fetchGames.pending should set "gamesStatus" to "APIStatus.Pending"', () => {
       const expectedResult = {
-        games: [],
+        ...initialState,
         gamesStatus: APIStatus.Pending,
-        currentGame: null,
-        currentGameStatus: APIStatus.Idle,
-        currentPlatformFilter: Platform.All,
-        currentGenreFilter: Genre.All,
-        currentSortType: SortType.Relevance,
-        gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentPageNumber: 1,
       };
 
       const result = gameSlice.reducer(initialState, fetchGames.pending);
@@ -229,19 +157,13 @@ describe('Redux slice: gameSlice', () => {
       expect(result).toEqual(expectedResult);
     });
 
-    test(`fetchGames.fulfilled should set "gamesStatus" to "APIStatus.Fulfilled", "games" to array with data,
+    test(`fetchGames.fulfilled should set "games" to array with data, "gamesStatus" to "APIStatus.Fulfilled",
         "gamesRefetchAttemptsCount" to "REFETCH_ATTEMPTS_COUNT" (default value)`, () => {
       const stateBeforeFulfilled = {
+        ...initialState,
         games: [],
         gamesStatus: APIStatus.Idle,
-        currentGame: null,
-        currentGameStatus: APIStatus.Idle,
-        currentPlatformFilter: Platform.All,
-        currentGenreFilter: Genre.All,
-        currentSortType: SortType.Relevance,
-        gamesRefetchAttemptsCount: 1,
-        currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentPageNumber: 1,
+        gamesRefetchAttemptsCount: 1
       };
 
       const mockParams: FetchGamesType = {
@@ -253,16 +175,10 @@ describe('Redux slice: gameSlice', () => {
       };
 
       const expectedResult = {
+        ...initialState,
         games: mockGames,
         gamesStatus: APIStatus.Fulfilled,
-        currentGame: null,
-        currentGameStatus: APIStatus.Idle,
-        currentPlatformFilter: Platform.All,
-        currentGenreFilter: Genre.All,
-        currentSortType: SortType.Relevance,
         gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentPageNumber: 1,
       };
 
       const result = gameSlice.reducer(stateBeforeFulfilled, fetchGames.fulfilled(mockGames, '', mockParams));
@@ -272,16 +188,8 @@ describe('Redux slice: gameSlice', () => {
 
     test('fetchGames.rejected should set "gamesStatus" to "APIStatus.Rejected"', () => {
       const expectedResult = {
-        games: [],
+        ...initialState,
         gamesStatus: APIStatus.Rejected,
-        currentGame: null,
-        currentGameStatus: APIStatus.Idle,
-        currentPlatformFilter: Platform.All,
-        currentGenreFilter: Genre.All,
-        currentSortType: SortType.Relevance,
-        gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentPageNumber: 1,
       };
 
       const result = gameSlice.reducer(initialState, fetchGames.rejected);
@@ -293,16 +201,8 @@ describe('Redux slice: gameSlice', () => {
   describe('Extra reducer: fetchCurrentGame', () => {
     test('fetchCurrentGame.pending should set "currentGameStatus" to "APIStatus.Pending"', () => {
       const expectedResult = {
-        games: [],
-        gamesStatus: APIStatus.Idle,
-        currentGame: null,
+        ...initialState,
         currentGameStatus: APIStatus.Pending,
-        currentPlatformFilter: Platform.All,
-        currentGenreFilter: Genre.All,
-        currentSortType: SortType.Relevance,
-        gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentPageNumber: 1,
       };
 
       const result = gameSlice.reducer(initialState, fetchCurrentGame.pending);
@@ -310,34 +210,22 @@ describe('Redux slice: gameSlice', () => {
       expect(result).toEqual(expectedResult);
     });
 
-    test(`fetchCurrentGame.fulfilled should set "currentGameStatus" to "APIStatus.Fulfilled", "currentGame" to current game data,
+    test(`fetchCurrentGame.fulfilled should set "currentGame" to current game data, "currentGameStatus" to "APIStatus.Fulfilled",
         "currentGameRefetchAttemptsCount" to "REFETCH_ATTEMPTS_COUNT" (default value)`, () => {
       const stateBeforeFulfilled = {
-        games: [],
-        gamesStatus: APIStatus.Idle,
+        ...initialState,
         currentGame: null,
         currentGameStatus: APIStatus.Idle,
-        currentPlatformFilter: Platform.All,
-        currentGenreFilter: Genre.All,
-        currentSortType: SortType.Relevance,
-        gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
         currentGameRefetchAttemptsCount: 1,
-        currentPageNumber: 1,
       };
 
       const mockParams: FetchCurrentGameType = { id: 1 };
 
       const expectedResult = {
-        games: [],
-        gamesStatus: APIStatus.Idle,
+        ...initialState,
         currentGame: mockCurrentGame,
         currentGameStatus: APIStatus.Fulfilled,
-        currentPlatformFilter: Platform.All,
-        currentGenreFilter: Genre.All,
-        currentSortType: SortType.Relevance,
-        gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentPageNumber: 1,
+        currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT
       };
 
       const result = gameSlice.reducer(stateBeforeFulfilled, fetchCurrentGame.fulfilled(mockCurrentGame, '', mockParams));
@@ -345,31 +233,17 @@ describe('Redux slice: gameSlice', () => {
       expect(result).toEqual(expectedResult);
     });
 
-    test('fetchCurrentGame.rejected should set "currentGameStatus" to "APIStatus.Rejected", "currentGame" to "null"', () => {
+    test('fetchCurrentGame.rejected should set "currentGame" to "null", "currentGameStatus" to "APIStatus.Rejected"', () => {
       const stateBeforeRejected = {
-        games: [],
-        gamesStatus: APIStatus.Idle,
+        ...initialState,
         currentGame: mockCurrentGame,
-        currentGameStatus: APIStatus.Rejected,
-        currentPlatformFilter: Platform.All,
-        currentGenreFilter: Genre.All,
-        currentSortType: SortType.Relevance,
-        gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentPageNumber: 1,
+        currentGameStatus: APIStatus.Fulfilled,
       };
 
       const expectedResult = {
-        games: [],
-        gamesStatus: APIStatus.Idle,
+        ...initialState,
         currentGame: null,
         currentGameStatus: APIStatus.Rejected,
-        currentPlatformFilter: Platform.All,
-        currentGenreFilter: Genre.All,
-        currentSortType: SortType.Relevance,
-        gamesRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
-        currentPageNumber: 1,
       };
 
       const result = gameSlice.reducer(stateBeforeRejected, fetchCurrentGame.rejected);
