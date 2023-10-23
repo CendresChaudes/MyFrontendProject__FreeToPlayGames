@@ -1,7 +1,7 @@
 import { DescriptionsProps } from 'antd';
 import { isDataItemEmpty } from '@/shared/lib';
 
-export const getSystemReqDescriptionItems = (currentGame: GameAdaptedType): DescriptionsProps['items'] => ([
+export const getSystemReqDescriptionItems = (currentGame: CurrentGameAdaptedType): DescriptionsProps['items'] => ([
   {
     key: '1',
     label: 'OS',

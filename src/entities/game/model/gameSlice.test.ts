@@ -177,7 +177,7 @@ describe('Redux slice: gameSlice', () => {
         currentGameRefetchAttemptsCount: REFETCH_ATTEMPTS_COUNT,
       };
 
-      const mockParams: FetchGamesData = {
+      const mockParams: FetchGamesType = {
         params: {
           platform: Platform.All,
           category: Genre.All,
@@ -254,7 +254,7 @@ describe('Redux slice: gameSlice', () => {
         currentGameRefetchAttemptsCount: 1,
       };
 
-      const mockParams: FetchCurrentGameData = { id: 1 };
+      const mockParams: FetchCurrentGameType = { id: 1 };
 
       const expectedResult = {
         games: [],

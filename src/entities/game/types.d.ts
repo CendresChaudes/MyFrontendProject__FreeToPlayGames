@@ -1,4 +1,4 @@
-type GameSourceType = {
+type CurrentGameSourceType = {
   id: number;
   title: string;
   thumbnail: string;
@@ -22,7 +22,7 @@ type GameSourceType = {
   screenshots: Array<{ id: string; image: string }>;
 };
 
-type GameAdaptedType = {
+type CurrentGameAdaptedType = {
   id: number;
   title: string;
   thumbnail: string;
@@ -47,16 +47,16 @@ type GameAdaptedType = {
 };
 
 type GamesSourceType = Omit<
-  GameSourceType,
+  CurrentGameSourceType,
   'status' | 'description' | 'minimum_system_requirements' | 'screenshots'
 >;
 
 type GamesAdaptedType = Omit<
-  GameAdaptedType,
+  CurrentGameAdaptedType,
   'status' | 'description' | 'minimumSystemRequirements' | 'screenshots'
 >;
 
-type FetchGamesData = {
+type FetchGamesType = {
   params: {
     platform?: typeof import('./const').platforms[number];
     category?: typeof import('./const').genres[number];
@@ -65,7 +65,7 @@ type FetchGamesData = {
   cancelToken?: import('axios').CancelToken;
 }
 
-type FetchCurrentGameData = {
+type FetchCurrentGameType = {
   id: number;
   cancelToken?: import('axios').CancelToken;
 }

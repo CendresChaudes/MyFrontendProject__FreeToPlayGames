@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-export const createSourceMockCurrentGame = (): GameSourceType => ({
+export const createSourceMockCurrentGame = (): CurrentGameSourceType => ({
   id: 452,
   title: 'Call Of Duty: Warzone',
   thumbnail: 'https://www.freetogame.com/g/452/thumbnail.jpg',

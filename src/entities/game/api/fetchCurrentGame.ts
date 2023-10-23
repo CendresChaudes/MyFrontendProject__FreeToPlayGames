@@ -5,11 +5,11 @@ import { adaptCurrentGameFromAPI } from './adaptCurrentGameFromAPI';
 import { APIRoute } from '@/const';
 
 type GameCache = {
-  data: GameAdaptedType;
+  data: CurrentGameAdaptedType;
   cacheExpireTime: number;
 }
 
-export const fetchCurrentGame = createAsyncThunk<GameAdaptedType, FetchCurrentGameData, AxiosThunkAPI>(
+export const fetchCurrentGame = createAsyncThunk<CurrentGameAdaptedType, FetchCurrentGameType, AxiosThunkAPI>(
   'api/fetchCurrentGame',
   async ({ id, cancelToken }, { extra: api }) => {
     const item = getItemFromCache(String(id)) as GameCache;
@@ -22,7 +22,7 @@ export const fetchCurrentGame = createAsyncThunk<GameAdaptedType, FetchCurrentGa
       removeItemFromCache(String(id));
     }
 
-    const { data } = await api.get<GameSourceType>(APIRoute.Game, { params: { id }, cancelToken });
+    const { data } = await api.get<CurrentGameSourceType>(APIRoute.Game, { params: { id }, cancelToken });
     const adaptedData = adaptCurrentGameFromAPI(data);
 
     setItemToCache(String(id), adaptedData, CACHE_TIME);

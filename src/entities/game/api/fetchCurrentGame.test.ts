@@ -9,7 +9,7 @@ import { APIRoute } from '@/const';
 jest.mock('@/shared/lib/storage');
 
 jest.mock('./adaptCurrentGameFromAPI', () => ({
-  adaptCurrentGameFromAPI: (item: GameAdaptedType) => item,
+  adaptCurrentGameFromAPI: (item: CurrentGameAdaptedType) => item,
 }));
 
 describe('Async action: fetchCurrentGame', () => {
@@ -18,7 +18,7 @@ describe('Async action: fetchCurrentGame', () => {
   const mockStore = createMockStore({ game: { currentGame: null } }, api);
 
   const mockCurrentGame = createAdaptedMockCurrentGame();
-  const mockParams: FetchCurrentGameData = { id: 1 };
+  const mockParams: FetchCurrentGameType = { id: 1 };
 
   const mockExpiredCacheData = {
     data: mockCurrentGame,

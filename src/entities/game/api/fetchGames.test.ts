@@ -18,7 +18,7 @@ describe('Async action: fetchGames', () => {
   test('Should return an array of games data', async () => {
     const mockGames = createAdaptedMockGames();
 
-    const mockParams: FetchGamesData = {
+    const mockParams: FetchGamesType = {
       params: {
         platform: Platform.All,
         category: Genre.All,

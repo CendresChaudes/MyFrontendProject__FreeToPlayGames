@@ -7,7 +7,7 @@ import { Platform, Genre, SortType, REFETCH_ATTEMPTS_COUNT } from '../const';
 type initialStateType = {
   games: GamesAdaptedType[];
   gamesStatus: APIStatus;
-  currentGame: Nullable<GameAdaptedType>;
+  currentGame: Nullable<CurrentGameAdaptedType>;
   currentGameStatus: APIStatus;
   currentPlatformFilter: Platform;
   currentGenreFilter: Genre;
@@ -64,7 +64,7 @@ export const gameSlice = createSlice({
       .addCase(fetchCurrentGame.pending, (state) => {
         state.currentGameStatus = APIStatus.Pending;
       })
-      .addCase(fetchCurrentGame.fulfilled, (state, action: PayloadAction<GameAdaptedType>) => {
+      .addCase(fetchCurrentGame.fulfilled, (state, action: PayloadAction<CurrentGameAdaptedType>) => {
         state.currentGameStatus = APIStatus.Fulfilled;
         state.currentGame = action.payload;
         state.currentGameRefetchAttemptsCount = REFETCH_ATTEMPTS_COUNT;
