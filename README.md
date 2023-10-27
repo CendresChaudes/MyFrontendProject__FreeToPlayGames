@@ -26,14 +26,4 @@ Cервис для показа free-to-play игр.
 
 ---
 
-Ссылка на проект: https://pp-free-to-play-games.vercel.app/
-
----
-
-### Основные команды для работы
-- Установка - `npm i`
-- Запуск локального сервера и dev-версии - `npm start`
-- Запуск локального сервера и prod-версии - `npm run build`
-- Сборка prod-версии - `npm run build`
-- Проверка кода линтером - `npm run lint`
-
+Ссылка на деплой: https://pp-free-to-play-games.vercel.app/
